@@ -10,21 +10,22 @@
 namespace ZfTable\Decorator\Service;
 
 use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\Config as ConfigServiceMgr;
+use ZfTable\Decorator\DecoratorPluginManager;
 
 class DecoratorPluginManagerFactory implements FactoryInterface
 {
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $configuration   = $serviceLocator->has('Config') ? $serviceLocator->get('Config') : array();
-        $configSeviceMgr = new ConfigServiceMgr(isset($configuration['zftable_decorators'])? : array());
+        $config       = $serviceLocator->has('Config') ? $serviceLocator->get('Config') : array();
+        $configSevice = new ConfigServiceMgr(isset($config['zftable_decorators']) ? $config['zftable_decorators'] : array());
 
-        $plugins = new ZfTable\Decorator\DecoratorPluginManager($configSeviceMgr);
+        $plugins = new DecoratorPluginManager($configSevice);
         $plugins->setServiceLocator($serviceLocator);
 
-        $configuration = $serviceLocator->get('Config');
-        if (isset($configuration['di']) && $serviceLocator->has('Di')) {
+        if (isset($config['di']) && $serviceLocator->has('Di')) {
             $plugins->addAbstractFactory($serviceLocator->get('DiAbstractServiceFactory'));
         }
 
