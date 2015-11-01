@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ZfTable ( Module for Zend Framework 2)
  *
@@ -8,27 +9,20 @@
 
 namespace ZfTable\Decorator;
 
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-
-class DecoratorFactory implements ServiceLocatorAwareInterface
+class DecoratorFactory
 {
-    CONST CELL_PREFIX = 'cell';
+
+    CONST CELL_PREFIX   = 'cell';
     CONST HEADER_PREFIX = 'header';
-    CONST ROW_PREFIX = 'row';  
-    
+    CONST ROW_PREFIX    = 'row';
+
     /**
      * The decorator manger
      *
      * @var null|DecoratorPluginManager
      */
     protected $decoratorManager = null;
-    
-    /**
-     * @var ServiceLocatorInterface 
-     */
-    protected $serviceLocator;
-    
+
     /**
      * 
      * @param string $name
@@ -73,12 +67,7 @@ class DecoratorFactory implements ServiceLocatorAwareInterface
     public function getPluginManager()
     {
         if ($this->decoratorManager === null) {
-            if($this->getServiceLocator() && $this->getServiceLocator()->has('ZfTable\Decorator\DecoratorPluginManager')) {
-                $this->decoratorManager = $this->getServiceLocator()->get('ZfTable\Decorator\DecoratorPluginManager');
-            }
-            else {
-                $this->decoratorManager = new DecoratorPluginManager();
-            }
+            $this->decoratorManager = new DecoratorPluginManager();
         }
         return $this->decoratorManager;
     }
@@ -87,17 +76,5 @@ class DecoratorFactory implements ServiceLocatorAwareInterface
     {
         $this->decoratorManager = $decoratorManager;
     }
-    
-    /**
-     * @return ServiceLocatorInterface 
-     */
-    public function getServiceLocator()
-    {
-        return $this->serviceLocator;
-    }
 
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-    }
 }

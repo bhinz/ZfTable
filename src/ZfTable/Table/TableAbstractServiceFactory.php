@@ -34,7 +34,12 @@ class TableAbstractServiceFactory implements AbstractFactoryInterface
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
         if ($this->canCreateServiceWithName($serviceLocator, $name, $requestedName)) {
-            return new $requestedName;
+            $table = new $requestedName;
+            
+            //inject the decorator factory
+            $table->setDecoratoFactory($serviceLocator->get('ZfTable\Decorator\DecoratorFactory'));
+            
+            return $table;
         }
         return null;
     }

@@ -17,10 +17,7 @@ use ZfTable\Options\ModuleOptions;
 use ZfTable\Form\TableForm;
 use ZfTable\Form\TableFilter;
 
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-
-abstract class AbstractTable extends AbstractElement implements TableInterface, ServiceLocatorAwareInterface
+abstract class AbstractTable extends AbstractElement implements TableInterface
 {
 
     /**
@@ -106,46 +103,12 @@ abstract class AbstractTable extends AbstractElement implements TableInterface, 
      * @var TableFilter
      */
     protected $filter;
-
-    /**
-     * @var ServiceLocatorInterface 
-     */
-    protected $serviceLocator;
     
     /**
      * @var Decorator\DecoratorFactory 
      */
     protected $decoratorFactory;
     
-    /**
-     * @return \Zend\ServiceManager\ServiceLocatorInterface 
-     */
-    public function getServiceLocator()
-    {
-        return $this->serviceLocator;
-    }
-
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-    }
-    
-    /**
-     * @return Decorator\DecoratorFactory
-     */
-    public function getDecoratorFactory()
-    {
-        if (!$this->decoratorFactory) {
-            // check if serviceLocator was loaded if so, try to get the service
-            if ($this->getServiceLocator() && $this->getServiceLocator()->has('ZfTable\Decorator\DecoratorFactory')) {
-                $this->decoratorFactory = $this->getServiceLocator()->get('ZfTable\Decorator\DecoratorFactory');
-            } else {
-                $this->decoratorFactory = new Decorator\DecoratorFactory();
-            }
-        }
-        return $this->decoratorFactory;
-    }
-
     /**
      * Check if table has benn initializable
      * @return boolean
@@ -277,6 +240,31 @@ abstract class AbstractTable extends AbstractElement implements TableInterface, 
     public function setAdapter($adapter)
     {
         $this->adapter = $adapter;
+        return $this;
+    }
+    
+    /**
+     * Get decorator factory
+     * 
+     * @return Decorator\DecoratorFactory
+     */
+    public function getDecoratorFactory()
+    {
+        if (!$this->decoratorFactory) {
+            $this->decoratorFactory = new Decorator\DecoratorFactory();
+        }
+        return $this->decoratorFactory;
+    }
+    
+    /**
+     * Set decorator factory
+     * 
+     * @param Decorator\DecoratorFactory $decoratorFactory
+     * @return $this
+     */
+    public function setDecoratorFactory(Decorator\DecoratorFactory $decoratorFactory)
+    {
+        $this->decoratorFactory = $decoratorFactory;
         return $this;
     }
 

@@ -51,10 +51,8 @@ return array(
         ),
     ),
     'service_manager' => array(
-        'invokables' => array(
-            'ZfTable\Decorator\DecoratorFactory' => 'ZfTable\Decorator\DecoratorFactory',
-        ),
         'factories' => array(
+            'ZfTable\Decorator\DecoratorFactory' => 'ZfTable\Decorator\Service\DecoratorFactoryFactory',
             'ZfTable\Decorator\DecoratorPluginManager' => 'ZfTable\Decorator\Service\DecoratorPluginManagerFactory',
         ),
          'abstract_factories' => [
