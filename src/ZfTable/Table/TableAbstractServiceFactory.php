@@ -37,7 +37,7 @@ class TableAbstractServiceFactory implements AbstractFactoryInterface
             $table = new $requestedName;
             
             //inject the decorator factory
-            $table->setDecoratoFactory($serviceLocator->get('ZfTable\Decorator\DecoratorFactory'));
+            $table->setDecoratorFactory($serviceLocator->get('ZfTable\Decorator\DecoratorFactory'));
             
             return $table;
         }
