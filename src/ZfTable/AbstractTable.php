@@ -75,7 +75,6 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      */
     private $tableInit = false;
 
-
     /**
      * Default classes for table
      * @var array
@@ -88,14 +87,28 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      */
     protected $config;
 
-
     /**
      * Options base ond ModuleOptions and config array
      * @var Options\ModuleOptions
      */
     protected $options = null;
-
-
+    
+    /**
+     * @var TableForm
+     */
+    protected $form;
+    
+    /**
+     *
+     * @var TableFilter
+     */
+    protected $filter;
+    
+    /**
+     * @var Decorator\DecoratorFactory 
+     */
+    protected $decoratorFactory;
+    
     /**
      * Check if table has benn initializable
      * @return boolean
@@ -133,8 +146,6 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
     {
         return $this->paramAdapter;
     }
-
-
 
     /**
      *
@@ -231,6 +242,31 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
         $this->adapter = $adapter;
         return $this;
     }
+    
+    /**
+     * Get decorator factory
+     * 
+     * @return Decorator\DecoratorFactory
+     */
+    public function getDecoratorFactory()
+    {
+        if (!$this->decoratorFactory) {
+            $this->decoratorFactory = new Decorator\DecoratorFactory();
+        }
+        return $this->decoratorFactory;
+    }
+    
+    /**
+     * Set decorator factory
+     * 
+     * @param Decorator\DecoratorFactory $decoratorFactory
+     * @return $this
+     */
+    public function setDecoratorFactory(Decorator\DecoratorFactory $decoratorFactory)
+    {
+        $this->decoratorFactory = $decoratorFactory;
+        return $this;
+    }
 
     /**
      * Rendering table
@@ -296,7 +332,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      */
     protected function initQuickSearch()
     {
-
+        
     }
 
     /**
@@ -305,7 +341,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      */
     protected function initFilters($query)
     {
-
+        
     }
 
     /**
@@ -440,7 +476,10 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      */
     public function getForm()
     {
-        return new TableForm(array_keys($this->headers));
+        if (!$this->form) {
+            $this->form = new TableForm(array_keys($this->headers));
+        }
+        return $this->form;
     }
 
     /**
@@ -449,6 +488,10 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      */
     public function getFilter()
     {
-        return new TableFilter(array_keys($this->headers));
+        if (!$this->filter) {
+            $this->filter = new TableFilter(array_keys($this->headers));
+        }
+        return $this->filter;
     }
+    
 }
