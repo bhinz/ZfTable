@@ -82,16 +82,10 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
     protected $class = array('table', 'table-bordered', 'table-condensed', 'table-hover', 'table-striped', 'dataTable');
 
     /**
-     * Array configuration of table
-     * @var array
-     */
-    protected $config;
-
-    /**
      * Options base ond ModuleOptions and config array
      * @var Options\ModuleOptions
      */
-    protected $options = null;
+    protected $config;
     
     /**
      * @var TableForm
@@ -126,11 +120,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      */
     public function setOptions($options)
     {
-        if (!$options instanceof ModuleOptions) {
-            $options = new ModuleOptions($options);
-        }
-
-        $this->options = $options;
+        $this->config = array_merge((array)$options, (array)$this->config);
         return $this;
     }
 

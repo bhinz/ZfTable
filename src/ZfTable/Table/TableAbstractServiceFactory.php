@@ -12,7 +12,6 @@ namespace ZfTable\Table;
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-
 /**
  * Can creates any children from AbstractTable, invokes a new instance, but 
  * injects the main service locator object into it. 
@@ -38,6 +37,11 @@ class TableAbstractServiceFactory implements AbstractFactoryInterface
             
             //inject the decorator factory
             $table->setDecoratorFactory($serviceLocator->get('ZfTable\Decorator\DecoratorFactory'));
+            
+            $config = $serviceLocator->get('Config');
+            $zftableConfig = isset($config['zftable'])?$config['zftable']:array();
+            
+            $table->setOptions($zftableConfig);
             
             return $table;
         }
