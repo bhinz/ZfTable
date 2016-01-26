@@ -55,9 +55,15 @@ return array(
             'ZfTable\Decorator\DecoratorFactory' => 'ZfTable\Decorator\Service\DecoratorFactoryFactory',
             'ZfTable\Decorator\DecoratorPluginManager' => 'ZfTable\Decorator\Service\DecoratorPluginManagerFactory',
         ),
-         'abstract_factories' => [
+         'abstract_factories' => array(
             'ZfTable\Table\TableAbstractServiceFactory',
-        ],
+         ),
+    ),
+    'zftable_decorators' => array(
+        'factories' => array(
+            'celllink'    => 'ZfTable\Decorator\Cell\LinkFactory',
+            'cellpartial' => 'ZfTable\Decorator\Cell\PartialFactory',
+        ),
     ),
     
     // The following section is new and should be added to your file

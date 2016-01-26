@@ -1,65 +1,65 @@
 <?php
+
 /**
- * ZfTable ( Module for Zend Framework 2)
- *
- * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
- * @license   MIT License
+ * @license http://opensource.org/licenses/MIT MIT
+ * @copyright Copyright (c) 2015 Vinicius Fagundes
  */
 
 namespace ZfTable\Decorator\Cell;
 
-use ZfTable\Decorator\Exception;
+use Zend\View\Helper\BasePath;
 
+/**
+ * Class Link
+ */
 class Link extends AbstractCellDecorator
 {
+    /**
+     * @var BasePath
+     */
+    protected $basePathHelper;
 
     /**
-     * Array of variable attribute for link
-     * @var array
+     * @return BasePath
      */
-    protected $vars;
-
-    /**
-     * Link url
-     * @var string
-     */
-    protected $url;
-
-
-    /**
-     * Constructor
-     *
-     * @param array $options
-     * @throws Exception\InvalidArgumentException
-     */
-    public function __construct(array $options = array())
+    public function getBasePathHelper()
     {
-        if (!isset($options['url'])) {
-            throw new Exception\InvalidArgumentException('Url key in options argument required');
-        }
-
-        $this->url = $options['url'];
-
-        if (isset($options['vars'])) {
-            $this->vars = is_array($options['vars']) ? $options['vars'] : array($options['vars']);
-        }
+        return $this->basePathHelper;
     }
 
     /**
-     * Rendering decorator
-     * @param string $context
-     * @return string
+     * @param BasePath $basePathHelper
+     */
+    public function setBasePathHelper(BasePath $basePathHelper)
+    {
+        $this->basePathHelper = $basePathHelper;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function render($context)
     {
-        $values = array();
+        $values = [];
         if (count($this->vars)) {
             $actualRow = $this->getCell()->getActualRow();
             foreach ($this->vars as $var) {
-                $values[] = $actualRow[$var];
+                if (is_object($actualRow)) {
+                    $method   = 'get' . ucfirst($var);
+                    $values[] = $actualRow->$method();
+                } else {
+                    $values[] = $actualRow[$var];
+                }
             }
         }
+        
+        $basePath = '';
+        $basePathHelper = $this->getBasePathHelper();
+        if ($basePathHelper) {
+            $basePath = $basePathHelper();
+        }
+        
         $url = vsprintf($this->url, $values);
-        return sprintf('<a  href="%s">%s</a>', $url, $context);
+        return sprintf('<a href="%s%s">%s</a>', $basePath, $url, $context);
     }
 }
