@@ -33,6 +33,9 @@ class TableAbstractServiceFactory implements AbstractFactoryInterface
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
         if ($this->canCreateServiceWithName($serviceLocator, $name, $requestedName)) {
+            /**
+             * @var \ZfTable\AbstractTable $table
+             */
             $table = new $requestedName;
             
             //inject the decorator factory
@@ -42,7 +45,11 @@ class TableAbstractServiceFactory implements AbstractFactoryInterface
             $zftableConfig = isset($config['zftable'])?$config['zftable']:array();
             
             $table->setOptions($zftableConfig);
-            
+
+            $form   = $table->getForm();
+            $filter = $table->getFilter();
+            $form->setInputFilter($filter);
+
             return $table;
         }
         return null;
