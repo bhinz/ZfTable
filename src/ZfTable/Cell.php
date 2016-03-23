@@ -3,7 +3,7 @@
  * ZfTable ( Module for Zend Framework 2)
  *
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
- * @license   MIT License 
+ * @license   MIT License
  */
 
 namespace ZfTable;
@@ -20,7 +20,7 @@ class Cell extends AbstractElement
     protected $header;
     
     /**
-     * 
+     *
      * @param Header $header
      */
     public function __construct($header)
@@ -29,7 +29,7 @@ class Cell extends AbstractElement
     }
 
     /**
-     * 
+     *
      * @param string $name type
      * @param array  $options type
      * @return Decorator\AbstractDecorator
@@ -73,7 +73,7 @@ class Cell extends AbstractElement
     }
 
     /**
-     * Get actual row 
+     * Get actual row
      *
      * @return array
      */
@@ -98,11 +98,11 @@ class Cell extends AbstractElement
         } elseif (is_object($row)) {
             $headerName = $this->getHeader()->getName();
             $methodName = 'get' . ucfirst($headerName);
-			if (method_exists($row, $methodName)) {
-				$value = $row->$methodName();
-			} else {
-				$value = (property_exists($row, $headerName)) ? $row->$headerName : '';
-			}
+            if (method_exists($row, $methodName)) {
+                $value = $row->$methodName();
+            } else {
+                $value = (property_exists($row, $headerName)) ? $row->$headerName : '';
+            }
         }
         
         foreach ($this->decorators as $decorator) {

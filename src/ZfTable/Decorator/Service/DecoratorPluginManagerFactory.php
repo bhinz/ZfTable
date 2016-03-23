@@ -4,7 +4,7 @@
  * ZfTable ( Module for Zend Framework 2)
  *
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
- * @license   MIT License 
+ * @license   MIT License
  */
 
 namespace ZfTable\Decorator\Service;
@@ -19,8 +19,9 @@ class DecoratorPluginManagerFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config       = $serviceLocator->has('Config') ? $serviceLocator->get('Config') : array();
-        $configSevice = new ConfigServiceMgr(isset($config['zftable_decorators']) ? $config['zftable_decorators'] : array());
+        $config           = $serviceLocator->has('Config') ? $serviceLocator->get('Config') : array();
+        $decoratorsConfig = isset($config['zftable_decorators']) ? $config['zftable_decorators'] : array();
+        $configSevice     = new ConfigServiceMgr($decoratorsConfig);
 
         $plugins = new DecoratorPluginManager($configSevice);
         $plugins->setServiceLocator($serviceLocator);
@@ -31,5 +32,4 @@ class DecoratorPluginManagerFactory implements FactoryInterface
 
         return $plugins;
     }
-
 }

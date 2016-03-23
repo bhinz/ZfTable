@@ -13,8 +13,8 @@ use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Can creates any children from AbstractTable, invokes a new instance, but 
- * injects the main service locator object into it. 
+ * Can creates any children from AbstractTable, invokes a new instance, but
+ * injects the main service locator object into it.
  */
 class TableAbstractServiceFactory implements AbstractFactoryInterface
 {
@@ -54,5 +54,4 @@ class TableAbstractServiceFactory implements AbstractFactoryInterface
         }
         return null;
     }
-
 }

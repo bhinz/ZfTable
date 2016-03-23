@@ -3,7 +3,7 @@
  * ZfTable ( Module for Zend Framework 2)
  *
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
- * @license   MIT License 
+ * @license   MIT License
  */
 
 namespace ZfTable;
@@ -51,7 +51,7 @@ class Header extends AbstractElement
     /**
      * Flag to inform if column should be sortable
      *
-     * @var boolean 
+     * @var boolean
      */
     protected $sortable = true;
     
@@ -187,7 +187,7 @@ class Header extends AbstractElement
     }
 
     /**
-     * Set name of header 
+     * Set name of header
      *
      * @param string $name
      * @return $this
@@ -271,7 +271,7 @@ class Header extends AbstractElement
     }
     
     /**
-     * 
+     *
      * @return boolean
      */
     public function getEditable()

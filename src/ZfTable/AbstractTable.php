@@ -99,7 +99,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
     protected $filter;
     
     /**
-     * @var Decorator\DecoratorFactory 
+     * @var Decorator\DecoratorFactory
      */
     protected $decoratorFactory;
     
@@ -235,7 +235,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
     
     /**
      * Get decorator factory
-     * 
+     *
      * @return Decorator\DecoratorFactory
      */
     public function getDecoratorFactory()
@@ -248,7 +248,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
     
     /**
      * Set decorator factory
-     * 
+     *
      * @param Decorator\DecoratorFactory $decoratorFactory
      * @return $this
      */
@@ -483,5 +483,4 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
         }
         return $this->filter;
     }
-    
 }

@@ -43,7 +43,7 @@ class Condition extends AbstractTable
          $this->getHeader('city')->getCell()->addDecorator('link', array(
             'url' => '/table/link/id/%s',
             'vars' => array('idcustomer')
-        ))->addCondition('equal', array('column' => 'city', 'values' => 'Warszawa'));
+         ))->addCondition('equal', array('column' => 'city', 'values' => 'Warszawa'));
 
     }
 }

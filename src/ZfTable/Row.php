@@ -3,7 +3,7 @@
  * ZfTable ( Module for Zend Framework 2)
  *
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
- * @license   MIT License 
+ * @license   MIT License
  */
 
 namespace ZfTable;
@@ -16,14 +16,14 @@ class Row extends AbstractElement
     protected $class = array('zf-data-row');
     
     /**
-     * 
+     *
      * @var array
      */
     protected $actualRow;
 
     
     /**
-     * 
+     *
      * @param AbstractTable $table
      */
     public function __construct($table)
@@ -32,7 +32,7 @@ class Row extends AbstractElement
     }
 
     /**
-     * 
+     *
      * @param string $name
      * @param array $options
      * @return Decorator\Header\AbstractHeaderDecorator
@@ -54,7 +54,7 @@ class Row extends AbstractElement
     }
 
     /**
-     * Get actaul row 
+     * Get actaul row
      * @return array
      */
     public function getActualRow()
@@ -63,7 +63,7 @@ class Row extends AbstractElement
     }
 
     /**
-     * 
+     *
      * @param array $actualRow
      */
     public function setActualRow($actualRow)
