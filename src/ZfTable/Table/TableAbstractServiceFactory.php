@@ -9,7 +9,11 @@
 
 namespace ZfTable\Table;
 
+use Interop\Container\ContainerInterface;
+use Interop\Container\Exception\ContainerException;
 use Zend\ServiceManager\AbstractFactoryInterface;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
+use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
@@ -19,7 +23,36 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class TableAbstractServiceFactory implements AbstractFactoryInterface
 {
 
-    public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+    /**
+     * Legacy and proxy method to canCreate
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return bool
+     */
+    public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $cName = null, $rName = null)
+    {
+        return $this->canCreate($serviceLocator, $rName);
+    }
+
+    /**
+     * Legacy and proxy method to __invoke
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return object child class of \ZfTable\AbstractTable
+     */
+    public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $cName = null, $rName = null)
+    {
+        return $this($serviceLocator, $rName);
+    }
+
+    /**
+     * Can the factory create an instance for the service?
+     *
+     * @param  ContainerInterface $container
+     * @param  string $requestedName
+     * @return bool
+     */
+    public function canCreate(ContainerInterface $container, $requestedName)
     {
         if (class_exists($requestedName)) {
             $reflect = new \ReflectionClass($requestedName);
@@ -30,20 +63,32 @@ class TableAbstractServiceFactory implements AbstractFactoryInterface
         return false;
     }
 
-    public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+    /**
+     * Create an object
+     *
+     * @param  ContainerInterface $container
+     * @param  string $requestedName
+     * @param  null|array $options
+     * @return object child class of \ZfTable\AbstractTable
+     * @throws ServiceNotFoundException if unable to resolve the service.
+     * @throws ServiceNotCreatedException if an exception is raised when
+     *     creating a service.
+     * @throws ContainerException if any other error occurs
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        if ($this->canCreateServiceWithName($serviceLocator, $name, $requestedName)) {
+        if ($this->canCreate($container, $requestedName)) {
             /**
              * @var \ZfTable\AbstractTable $table
              */
             $table = new $requestedName;
-            
+
             //inject the decorator factory
-            $table->setDecoratorFactory($serviceLocator->get('ZfTable\Decorator\DecoratorFactory'));
-            
-            $config = $serviceLocator->get('Config');
+            $table->setDecoratorFactory($container->get('ZfTable\Decorator\DecoratorFactory'));
+
+            $config = $container->get('Config');
             $zftableConfig = isset($config['zftable'])?$config['zftable']:array();
-            
+
             $table->setOptions($zftableConfig);
 
             $form   = $table->getForm();
