@@ -2,13 +2,16 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dudapiotr/ZfTable/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dudapiotr/ZfTable/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/dudapiotr/zftable/v/stable.svg)](https://packagist.org/packages/dudapiotr/zftable) [![Total Downloads](https://poser.pugx.org/dudapiotr/zftable/downloads.svg)](https://packagist.org/packages/dudapiotr/zftable) [![License](https://poser.pugx.org/dudapiotr/zftable/license.svg)](https://packagist.org/packages/dudapiotr/zftable)
 
-ZfTable 3.1 [See on live (new site)](http://dudapiotr.eu)
+ZffTable 3.2 [See on live v3.1](http://dudapiotr.eu)
 =======
-Version 3.1 Created by Piotr Duda
+Original project created by Piotr Duda
+
+Version 3.2 Created by Vinícius Fagundes
+
 
 Download
 -----------
-[Complete site : dudapiotr.eu](https://drive.google.com/file/d/0B4WJ3MxrRUAEOWp5emFaNlpBNGM/edit?usp=sharing)
+[Complete site 3.1: dudapiotr.eu](https://drive.google.com/file/d/0B4WJ3MxrRUAEOWp5emFaNlpBNGM/edit?usp=sharing)
 
 
 Introduction
@@ -53,6 +56,14 @@ Features
 -  Possibility to send additional params
 -  Asset manager functionality (https://github.com/RWOverdijk/AssetManager)
 -  Visio Crud Module integration (https://github.com/HyPhers/visio-crud-zf2/)
+-  DecoratorPluginManager as a service - it's easier create new decorators
+-  Partial decorator
+
+Changes in Version 3.2
+----------------
+- DecoratorPluginManager as a Service (it's possible add new decorators from created by factory and also possible create it in third part sources)
+- Improve Link decorator (now it is created by LinkFactory which inject BasePathHelper to create correctly urls)
+- Partial decorator for reusing content cells between tables
 
 Changes in Version 3.1
 ----------------
@@ -85,6 +96,8 @@ In next versions
 - More decorators and conditions
 - Adapter for JGrid
 - Exporter (PDFV)
+- New site for examples in GH Pages
+- A full ZF2 project as a repository
 
 
 Installation
@@ -94,7 +107,7 @@ Installation description has been moved to wiki
 https://github.com/dudapiotr/ZfTable/wiki/Installation-and-Configuration
 
 
-Examples [See on live](http://dudapiotr.eu)
+Examples [See on live v3.1](http://dudapiotr.eu)
 -------
 In Example directory there is a couple of examples how use decorators and generate table. After added js and css file
 to your layout view, in controller there are a table calls(based on data from ZF2 tutorial - album).
