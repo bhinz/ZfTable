@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/dudapiotr/ZfTable.svg?branch=master)](https://travis-ci.org/dudapiotr/ZfTable)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dudapiotr/ZfTable/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dudapiotr/ZfTable/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/dudapiotr/zftable/v/stable.svg)](https://packagist.org/packages/dudapiotr/zftable) [![Total Downloads](https://poser.pugx.org/dudapiotr/zftable/downloads.svg)](https://packagist.org/packages/dudapiotr/zftable) [![License](https://poser.pugx.org/dudapiotr/zftable/license.svg)](https://packagist.org/packages/dudapiotr/zftable)
+[![Build Status](https://travis-ci.org/fagundes/ZffTable.svg?branch=master)](https://travis-ci.org/fagundes/ZffTable)
+[![Latest Stable Version](https://poser.pugx.org/fagundes/zff-table/v/stable.svg)](https://packagist.org/packages/fagundes/zff-table) [![Total Downloads](https://poser.pugx.org/fagundes/zff-table/downloads.svg)](https://packagist.org/packages/fagundes/zff-table) [![License](https://poser.pugx.org/fagundes/zff-table/license.svg)](https://packagist.org/packages/fagundes/zftable)
 
 ZffTable 3.2 [See on live v3.1](http://dudapiotr.eu)
 =======
