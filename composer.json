@@ -35,6 +35,7 @@
     },
     "extra": {
         "zf": {
+            "component": "ZfTable"
             "config-provider": "ZfTable\\ConfigProvider"
         }
     }
