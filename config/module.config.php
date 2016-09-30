@@ -1,13 +1,10 @@
 <?php
 namespace ZfTable;
 
-return array(
-    
-    'asset_manager' => array(
-        'resolver_configs' => array(
-            
-            'map' => array(
-                
+return [
+    'asset_manager' => [
+        'resolver_configs' => [
+            'map' => [
                 /*ZF TABLE*/
                 'js/zf-table.js' => __DIR__ . '/../src/ZfTable/Public/js/zf-table.js',
                 'css/zf-table/zf-table.css' => __DIR__ . '/../src/ZfTable/Public/css/zf-table/zf-table.css',
@@ -36,69 +33,66 @@ return array(
                 'css/bootstrap-2.2.2/bootstrap.min.css' => __DIR__ . '/../src/ZfTable/Public/css/bootstrap-2.2.2/bootstrap.min.css',
                 'css/bootstrap-2.2.2/bootstrap-responsive.min.css' => __DIR__ . '/../src/ZfTable/Public/css/bootstrap-2.2.2/bootstrap-responsive.min.css',
                 'css/bootstrap-2.2.2/DT_bootstrap.css' => __DIR__ . '/../src/ZfTable/Public/css/bootstrap-2.2.2/DT_bootstrap.css',
-            ),
-        ),
-    ),
-    
-    'view_manager' => array(
-        'template_path_stack' => array(
+            ],
+        ],
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
             'zf-table' => __DIR__ .  '/../view',
-        ),
-    ),
-    'controllers' => array(
-        'invokables' => array(
+        ],
+    ],
+    'controllers' => [
+        'invokables' => [
             'ZfTable\Controller\Table' => 'ZfTable\Controller\TableController',
-        ),
-    ),
-    'service_manager' => array(
-        'factories' => array(
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
             'ZfTable\Decorator\DecoratorFactory' => 'ZfTable\Decorator\Service\DecoratorFactoryFactory',
             'ZfTable\Decorator\DecoratorPluginManager' => 'ZfTable\Decorator\Service\DecoratorPluginManagerFactory',
-        ),
-         'abstract_factories' => array(
+        ],
+        'abstract_factories' => [
             'ZfTable\Table\TableAbstractServiceFactory',
-         ),
-    ),
-    'zftable_decorators' => array(
-        'factories' => array(
+        ],
+    ],
+    'zftable_decorators' => [
+        'factories' => [
             'celllink'    => 'ZfTable\Decorator\Cell\LinkFactory',
             'cellpartial' => 'ZfTable\Decorator\Cell\PartialFactory',
-        ),
-    ),
-    
+        ],
+    ],
     // The following section is new and should be added to your file
-    'router' => array(
-        'routes' => array(
-            'zftable'=> array(
+    'router' => [
+        'routes' => [
+            'zftable'=> [
                 'type'    => 'segment',
-                'options' => array(
+                'options' => [
                     'route'    => '/table[/][:action]',
-                    'constraints' => array(
+                    'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ),
-                    'defaults' => array(
+                    ],
+                    'defaults' => [
                         'controller' => 'ZfTable\Controller\Table',
                         'action'     => 'index',
-                    ),
-                ),
-            ),
-        ),
-    ),
-    
+                    ],
+                ],
+            ],
+        ],
+    ],
     // Doctrine config
-    'doctrine' => array(
-        'driver' => array(
-            'application_entities' => array(
+    'doctrine' => [
+        'driver' => [
+            'application_entities' => [
                 'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/ZfTable/Entity')
-              ),
-            'zftable_default' => array(
-                'drivers' => array(
+                'paths' => [__DIR__ . '/../src/ZfTable/Entity']
+              ],
+            'zftable_default' => [
+                'drivers' => [
                   'ZfTable\Entity' => 'application_entities'
-                )
-            )
-        )
-    )
-);
+                ],
+            ],
+        ],
+    ],
+];
 
