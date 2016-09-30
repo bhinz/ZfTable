@@ -33,4 +33,9 @@
             "./Module.php"
         ]
     }
+    "extra": {
+        "zf": {
+            "config-provider": "ZfTable\\ConfigProvider"
+        }
+    },
 }
