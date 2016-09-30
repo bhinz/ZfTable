@@ -18,22 +18,20 @@ class DecoratorPluginManager extends AbstractPluginManager
      *
      * @var array
      */
-    protected $invokableClasses = array(
-
-        'cellattr' => '\ZfTable\Decorator\Cell\AttrDecorator',
-        'cellvarattr' => '\ZfTable\Decorator\Cell\VarAttrDecorator',
-        'cellclass' => '\ZfTable\Decorator\Cell\ClassDecorator',
-        'cellicon' => '\ZfTable\Decorator\Cell\Icon',
-        'cellmapper' => '\ZfTable\Decorator\Cell\Mapper',
-        'celllink' => '\ZfTable\Decorator\Cell\Link',
-        'celltemplate' => '\ZfTable\Decorator\Cell\Template',
-        'celleditable' => '\ZfTable\Decorator\Cell\Editable',
-        'cellcallable' => '\ZfTable\Decorator\Cell\CallableDecorator',
-
-        'rowclass' => '\ZfTable\Decorator\Row\ClassDecorator',
-        'rowvarattr' => '\ZfTable\Decorator\Row\VarAttr',
+    protected $invokableClasses = [
+        'cellattr'       => '\ZfTable\Decorator\Cell\AttrDecorator',
+        'cellvarattr'    => '\ZfTable\Decorator\Cell\VarAttrDecorator',
+        'cellclass'      => '\ZfTable\Decorator\Cell\ClassDecorator',
+        'cellicon'       => '\ZfTable\Decorator\Cell\Icon',
+        'cellmapper'     => '\ZfTable\Decorator\Cell\Mapper',
+        'celllink'       => '\ZfTable\Decorator\Cell\Link',
+        'celltemplate'   => '\ZfTable\Decorator\Cell\Template',
+        'celleditable'   => '\ZfTable\Decorator\Cell\Editable',
+        'cellcallable'   => '\ZfTable\Decorator\Cell\CallableDecorator',
+        'rowclass'       => '\ZfTable\Decorator\Row\ClassDecorator',
+        'rowvarattr'     => '\ZfTable\Decorator\Row\VarAttr',
         'rowseparatable' => '\ZfTable\Decorator\Row\Separatable',
-    );
+    ];
 
     /**
      * Don't share header by default
