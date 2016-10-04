@@ -14,18 +14,18 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 class DecoratorPluginManager extends AbstractPluginManager
 {
     protected $aliases = [
-        'cellattr'       => Decorator\Cell\AttrDecorator::class,
-        'cellvarattr'    => Decorator\Cell\VarAttrDecorator::class,
-        'cellclass'      => Decorator\Cell\ClassDecorator::class,
-        'cellicon'       => Decorator\Cell\Icon::class,
-        'cellmapper'     => Decorator\Cell\Mapper::class,
-        'celllink'       => Decorator\Cell\Link::class,
-        'celltemplate'   => Decorator\Cell\Template::class,
-        'celleditable'   => Decorator\Cell\Editable::class,
-        'cellcallable'   => Decorator\Cell\CallableDecorator::class,
-        'rowclass'       => Decorator\Row\ClassDecorator::class,
-        'rowvarattr'     => Decorator\Row\VarAttr::class,
-        'rowseparatable' => Decorator\Row\Separatable::class,
+        'cellattr'       => Cell\AttrDecorator::class,
+        'cellvarattr'    => Cell\VarAttrDecorator::class,
+        'cellclass'      => Cell\ClassDecorator::class,
+        'cellicon'       => Cell\Icon::class,
+        'cellmapper'     => Cell\Mapper::class,
+        'celllink'       => Cell\Link::class,
+        'celltemplate'   => Cell\Template::class,
+        'celleditable'   => Cell\Editable::class,
+        'cellcallable'   => Cell\CallableDecorator::class,
+        'rowclass'       => Row\ClassDecorator::class,
+        'rowvarattr'     => Row\VarAttr::class,
+        'rowseparatable' => Row\Separatable::class,
     ];
 
     /**
@@ -34,18 +34,18 @@ class DecoratorPluginManager extends AbstractPluginManager
      * @var array
      */
     protected $factories = [
-        Decorator\Cell\AttrDecorator::class      => InvokableFactory::class,
-        Decorator\Cell\VarAttrDecorator::class   => InvokableFactory::class,
-        Decorator\Cell\ClassDecorator::class     => InvokableFactory::class,
-        Decorator\Cell\Icon::class               => InvokableFactory::class,
-        Decorator\Cell\Mapper::class             => InvokableFactory::class,
-        Decorator\Cell\Link::class               => InvokableFactory::class,
-        Decorator\Cell\Template::class           => InvokableFactory::class,
-        Decorator\Cell\Editable::class           => InvokableFactory::class,
-        Decorator\Cell\CallableDecorator::class  => InvokableFactory::class,
-        Decorator\Row\ClassDecorator::class      => InvokableFactory::class,
-        Decorator\Row\VarAttr::class             => InvokableFactory::class,
-        Decorator\Row\Separatable::class         => InvokableFactory::class,
+        Cell\AttrDecorator::class      => InvokableFactory::class,
+        Cell\VarAttrDecorator::class   => InvokableFactory::class,
+        Cell\ClassDecorator::class     => InvokableFactory::class,
+        Cell\Icon::class               => InvokableFactory::class,
+        Cell\Mapper::class             => InvokableFactory::class,
+        Cell\Link::class               => InvokableFactory::class,
+        Cell\Template::class           => InvokableFactory::class,
+        Cell\Editable::class           => InvokableFactory::class,
+        Cell\CallableDecorator::class  => InvokableFactory::class,
+        Row\ClassDecorator::class      => InvokableFactory::class,
+        Row\VarAttr::class             => InvokableFactory::class,
+        Row\Separatable::class         => InvokableFactory::class,
     ];
 
     /**
