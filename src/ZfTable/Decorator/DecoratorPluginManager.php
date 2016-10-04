@@ -9,28 +9,43 @@
 namespace ZfTable\Decorator;
 
 use Zend\ServiceManager\AbstractPluginManager;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 class DecoratorPluginManager extends AbstractPluginManager
 {
+    protected $aliases = [
+        'cellattr'       => Decorator\Cell\AttrDecorator::class,
+        'cellvarattr'    => Decorator\Cell\VarAttrDecorator::class,
+        'cellclass'      => Decorator\Cell\ClassDecorator::class,
+        'cellicon'       => Decorator\Cell\Icon::class,
+        'cellmapper'     => Decorator\Cell\Mapper::class,
+        'celllink'       => Decorator\Cell\Link::class,
+        'celltemplate'   => Decorator\Cell\Template::class,
+        'celleditable'   => Decorator\Cell\Editable::class,
+        'cellcallable'   => Decorator\Cell\CallableDecorator::class,
+        'rowclass'       => Decorator\Row\ClassDecorator::class,
+        'rowvarattr'     => Decorator\Row\VarAttr::class,
+        'rowseparatable' => Decorator\Row\Separatable::class,
+    ];
 
     /**
      * Default set of helpers
      *
      * @var array
      */
-    protected $invokableClasses = [
-        'cellattr'       => '\ZfTable\Decorator\Cell\AttrDecorator',
-        'cellvarattr'    => '\ZfTable\Decorator\Cell\VarAttrDecorator',
-        'cellclass'      => '\ZfTable\Decorator\Cell\ClassDecorator',
-        'cellicon'       => '\ZfTable\Decorator\Cell\Icon',
-        'cellmapper'     => '\ZfTable\Decorator\Cell\Mapper',
-        'celllink'       => '\ZfTable\Decorator\Cell\Link',
-        'celltemplate'   => '\ZfTable\Decorator\Cell\Template',
-        'celleditable'   => '\ZfTable\Decorator\Cell\Editable',
-        'cellcallable'   => '\ZfTable\Decorator\Cell\CallableDecorator',
-        'rowclass'       => '\ZfTable\Decorator\Row\ClassDecorator',
-        'rowvarattr'     => '\ZfTable\Decorator\Row\VarAttr',
-        'rowseparatable' => '\ZfTable\Decorator\Row\Separatable',
+    protected $factories = [
+        Decorator\Cell\AttrDecorator::class      => InvokableFactory::class,
+        Decorator\Cell\VarAttrDecorator::class   => InvokableFactory::class,
+        Decorator\Cell\ClassDecorator::class     => InvokableFactory::class,
+        Decorator\Cell\Icon::class               => InvokableFactory::class,
+        Decorator\Cell\Mapper::class             => InvokableFactory::class,
+        Decorator\Cell\Link::class               => InvokableFactory::class,
+        Decorator\Cell\Template::class           => InvokableFactory::class,
+        Decorator\Cell\Editable::class           => InvokableFactory::class,
+        Decorator\Cell\CallableDecorator::class  => InvokableFactory::class,
+        Decorator\Row\ClassDecorator::class      => InvokableFactory::class,
+        Decorator\Row\VarAttr::class             => InvokableFactory::class,
+        Decorator\Row\Separatable::class         => InvokableFactory::class,
     ];
 
     /**
