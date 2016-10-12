@@ -17,17 +17,16 @@ class LinkDecorator extends AbstractTable
     /**
      * @var array Definition of headers
      */
-    protected $headers = array(
-        'artist' => array('title' => 'Artist'),
-        'title' => array('title' => 'Title')
-    );
+    protected $headers = [
+        'artist' => ['title' => 'Artist'],
+        'title'  => ['title' => 'Title']
+    ];
 
     public function init()
     {
-        $this->getHeader('artist')->getCell()->addDecorator('link', array(
+        $this->getHeader('artist')->getCell()->addDecorator('link', [
             'url' => 'http://zf2/artist/%s',
-            'vars' => array('id')
-        ))->addCondition('equal', array('column' => 'artist', 'values' => 'Adele'));
-
+            'vars' => ['id']
+        ])->addCondition('equal', ['column' => 'artist', 'values' => 'Adele']);
     }
 }

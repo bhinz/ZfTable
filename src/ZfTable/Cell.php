@@ -5,27 +5,35 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable;
 
 use ZfTable\AbstractElement;
 
 class Cell extends AbstractElement
 {
-
     /**
      * Header object
      * @var Header
      */
     protected $header;
-    
+
+    /**
+     * Footer object
+     * @var Footer
+     */
+    protected $footer;
+
     /**
      *
-     * @param Header $header
+     * @param Header|Footer $object
      */
-    public function __construct($header)
+    public function __construct($object)
     {
-        $this->header = $header;
+        if (Header::class == get_class($object)) {
+            $this->header = $object;
+        } elseif (Footer::class == get_class($object)) {
+            $this->footer = $object;
+        }
     }
 
     /**
@@ -34,11 +42,14 @@ class Cell extends AbstractElement
      * @param array  $options type
      * @return Decorator\AbstractDecorator
      */
-    public function addDecorator($name, $options = array())
+    public function addDecorator($name, $options = [])
     {
         $decorator = $this->getDecoratorFactory()->factoryCell($name, $options);
         $decorator->setCell($this);
         $this->attachDecorator($decorator);
+// \Zend\Debug\Debug::dump(get_class($this), 'Cell');
+// \Zend\Debug\Debug::dump(get_class($this->attachDecorator($decorator)), 'Cell');
+// \Zend\Debug\Debug::dump(get_class($decorator), 'Cell');
         return $decorator;
     }
 
@@ -50,7 +61,6 @@ class Cell extends AbstractElement
         return $this->table->getDecoratorFactory();
     }
 
-    
     /**
      * Get header object
      * @return Header
@@ -73,6 +83,27 @@ class Cell extends AbstractElement
     }
 
     /**
+     * Get footer object
+     * @return Footer
+     */
+    public function getFooter()
+    {
+        return $this->footer;
+    }
+
+    /**
+     * Set footer object
+     *
+     * @param Footer $footer
+     * @return $this
+     */
+    public function setFooter($footer)
+    {
+        $this->footer = $footer;
+        return $this;
+    }
+
+    /**
      * Get actual row
      *
      * @return array
@@ -90,7 +121,6 @@ class Cell extends AbstractElement
     public function render($type = 'html')
     {
         $row = $this->getTable()->getRow()->getActualRow();
-        
         $value = '';
 
         if (is_array($row) || $row instanceof \ArrayAccess) {
@@ -104,18 +134,17 @@ class Cell extends AbstractElement
                 $value = (property_exists($row, $headerName)) ? $row->$headerName : '';
             }
         }
-        
+
         foreach ($this->decorators as $decorator) {
             if ($decorator->validConditions()) {
                 $value = $decorator->render($value);
             }
         }
-
         if ($type == 'html') {
             $ret = sprintf("<td %s>%s</td>", $this->getAttributes(), $value);
             $this->clearVar();
             return $ret;
-            
+
         } else {
             return $value;
         }

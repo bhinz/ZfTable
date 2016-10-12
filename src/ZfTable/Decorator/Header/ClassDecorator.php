@@ -5,12 +5,12 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable\Decorator\Header;
+
+use ZfTable\Decorator\Cell\AbstractCellDecorator;
 
 class ClassDecorator extends AbstractCellDecorator
 {
-
     /**
      * Class
      * @var array

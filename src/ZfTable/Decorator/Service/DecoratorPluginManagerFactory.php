@@ -1,12 +1,10 @@
 <?php
-
 /**
  * ZfTable ( Module for Zend Framework 2)
  *
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable\Decorator\Service;
 
 use Interop\Container\ContainerInterface;
@@ -40,8 +38,8 @@ class DecoratorPluginManagerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config           = $container->has('Config') ? $container->get('Config') : array();
-        $decoratorsConfig = isset($config['zftable_decorators']) ? $config['zftable_decorators'] : array();
+        $config           = $container->has('Config') ? $container->get('Config') : [];
+        $decoratorsConfig = isset($config['zftable_decorators']) ? $config['zftable_decorators'] : [];
         $configSevice     = new ConfigServiceMgr($decoratorsConfig);
 
         $plugins = new DecoratorPluginManager($configSevice);

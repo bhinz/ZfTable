@@ -13,15 +13,15 @@ use ZfTable\Table\Exception;
 
 class Row extends AbstractElement
 {
-    protected $class = array('zf-data-row');
-    
+    protected $class = ['zf-data-row'];
+
     /**
      *
      * @var array
      */
     protected $actualRow;
 
-    
+
     /**
      *
      * @param AbstractTable $table
@@ -37,14 +37,17 @@ class Row extends AbstractElement
      * @param array $options
      * @return Decorator\Header\AbstractHeaderDecorator
      */
-    public function addDecorator($name, $options = array())
+    public function addDecorator($name, $options = [])
     {
         $decorator = $this->getDecoratorFactory()->factoryRow($name, $options);
         $this->attachDecorator($decorator);
         $decorator->setRow($this);
+// \Zend\Debug\Debug::dump(get_class($this), 'Row');
+// \Zend\Debug\Debug::dump(get_class($this->attachDecorator($decorator)), 'Row');
+// \Zend\Debug\Debug::dump(get_class($decorator), 'Row');
         return $decorator;
     }
-    
+
     /**
      * @return Decorator\DecoratorFactory
      */
@@ -71,7 +74,7 @@ class Row extends AbstractElement
         $this->actualRow = $actualRow;
     }
 
-    
+
     /**
      * Rendering all rows for table
      *
@@ -89,7 +92,7 @@ class Row extends AbstractElement
         } else {
             throw new Exception\InvalidArgumentException();
         }
-        
+
     }
 
     /**
@@ -102,11 +105,11 @@ class Row extends AbstractElement
     {
         $data = $this->getTable()->getData();
         $headers = $this->getTable()->getHeaders();
-        $render = array();
-        
+        $render = [];
+
         foreach ($data as $rowData) {
             $this->setActualRow($rowData);
-            $temp = array();
+            $temp = [];
             foreach ($headers as $name => $options) {
                 if ($type == 'assc') {
                     $temp[$name] =  $this->getTable()->getHeader($name)->getCell()->render('array');
@@ -118,7 +121,7 @@ class Row extends AbstractElement
         }
         return $render;
     }
-    
+
     /**
      * rendering row as a html
      *
@@ -129,7 +132,7 @@ class Row extends AbstractElement
         $data = $this->getTable()->getData();
         $headers = $this->getTable()->getHeaders();
         $render = '';
-        
+
         foreach ($data as $rowData) {
             $this->setActualRow($rowData);
             $rowRender = '';

@@ -8,7 +8,6 @@ use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 
 class DoctrineQueryBuilder extends AbstractSource
 {
-
     /**
      *
      * @var \Doctrine\ORM\QueryBuilder
@@ -37,19 +36,14 @@ class DoctrineQueryBuilder extends AbstractSource
     public function getPaginator()
     {
         if (!$this->paginator) {
-
-
             $this->order();
 
-             $adapter = new DoctrineAdapter(new ORMPaginator($this->query));
-             $this->paginator = new Paginator($adapter);
-             $this->initPaginator();
-
+            $adapter = new DoctrineAdapter(new ORMPaginator($this->query));
+            $this->paginator = new Paginator($adapter);
+            $this->initPaginator();
         }
         return $this->paginator;
     }
-
-
 
     protected function order()
     {
@@ -60,16 +54,15 @@ class DoctrineQueryBuilder extends AbstractSource
             return;
         }
 
-        $header = $this->getTable()->getHeader($column);
+        $header     = $this->getTable()->getHeader($column);
         $tableAlias = ($header) ? $header->getTableAlias() : 'q';
 
         if (false === strpos($tableAlias, '.')) {
-            $tableAlias = $tableAlias.'.'.$column;
+            $tableAlias = $tableAlias . '.' . $column;
         }
 
         $this->query->orderBy($tableAlias, $order);
     }
-
 
     public function getQuery()
     {

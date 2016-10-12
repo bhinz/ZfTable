@@ -6,15 +6,14 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable\Decorator;
 
 class DecoratorFactory
 {
-
     const CELL_PREFIX   = 'cell';
-    const HEADER_PREFIX = 'header';
     const ROW_PREFIX    = 'row';
+    const HEADER_PREFIX = 'header';
+    const FOOTER_PREFIX = 'footer';
 
     /**
      * The decorator manger
@@ -56,6 +55,18 @@ class DecoratorFactory
     public function factoryHeader($name, $options)
     {
         $decorator = $this->getPluginManager()->get(self::HEADER_PREFIX . $name, $options);
+        return $decorator;
+    }
+
+    /**
+     *
+     * @param string $name
+     * @param array $options
+     * @return AbstractDecorator
+     */
+    public function factoryFooter($name, $options)
+    {
+        $decorator = $this->getPluginManager()->get(self::FOOTER_PREFIX . $name, $options);
         return $decorator;
     }
 

@@ -66,7 +66,7 @@ class Product implements InputFilterAwareInterface
      *
      * @param array $data
      */
-    public function populate($data = array())
+    public function populate($data = [])
     {
         $this->id = $data['id'];
         $this->name = $data['name'];

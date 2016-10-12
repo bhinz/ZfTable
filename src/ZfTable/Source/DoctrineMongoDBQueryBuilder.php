@@ -30,7 +30,7 @@ class DoctrineMongoDBQueryBuilder extends AbstractSource
     protected function order()
     {
         $column = $this->getParamAdapter()->getColumn();
-        $order = $this->getParamAdapter()->getOrder();
+        $order  = $this->getParamAdapter()->getOrder();
 
         if (!$column) {
             return;

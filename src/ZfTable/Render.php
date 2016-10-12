@@ -14,7 +14,6 @@ use ZfTable\Options\ModuleOptions;
 
 class Render extends AbstractCommon
 {
-
     /**
      * PhpRenderer object
      * @var PhpRenderer
@@ -56,7 +55,7 @@ class Render extends AbstractCommon
      */
     public function renderDataTableJson()
     {
-        $res = array();
+        $res = [];
         $render = $this->getTable()->getRow()->renderRows('array');
         $res['sEcho'] = $render;
         $res['iTotalDisplayRecords'] = $this->getTable()->getSource()->getPaginator()->getTotalItemCount();
@@ -65,17 +64,16 @@ class Render extends AbstractCommon
         return json_encode($res);
     }
 
-
     public function renderNewDataTableJson()
     {
 
         $render = $this->getTable()->getRow()->renderRows('array');
 
-        $res = array(
+        $res = [
             'draw' => $render,
             'recordsFiltered' => $this->getTable()->getSource()->getPaginator()->getTotalItemCount(),
             'data' => $render,
-        );
+        ];
 
         return json_encode($res);
     }
@@ -98,7 +96,6 @@ class Render extends AbstractCommon
 
     }
 
-
     public function renderCustom($template)
     {
 
@@ -110,16 +107,16 @@ class Render extends AbstractCommon
 
         $view->setVariable('rows', $rowsArray);
 
-        $view->setVariable('paginator', $this->renderPaginator());
-        $view->setVariable('paramsWrap', $this->renderParamsWrap());
-        $view->setVariable('itemCountPerPage', $this->getTable()->getParamAdapter()->getItemCountPerPage());
-        $view->setVariable('quickSearch', $this->getTable()->getParamAdapter()->getQuickSearch());
-        $view->setVariable('name', $tableConfig->getName());
+        $view->setVariable('paginator',              $this->renderPaginator());
+        $view->setVariable('paramsWrap',             $this->renderParamsWrap());
+        $view->setVariable('itemCountPerPage',       $this->getTable()->getParamAdapter()->getItemCountPerPage());
+        $view->setVariable('quickSearch',            $this->getTable()->getParamAdapter()->getQuickSearch());
+        $view->setVariable('name',                   $tableConfig->getName());
         $view->setVariable('itemCountPerPageValues', $tableConfig->getValuesOfItemPerPage());
-        $view->setVariable('showQuickSearch', $tableConfig->getShowQuickSearch());
-        $view->setVariable('showPagination', $tableConfig->getShowPagination());
-        $view->setVariable('showItemPerPage', $tableConfig->getShowItemPerPage());
-        $view->setVariable('showExportToCSV', $tableConfig->getShowExportToCSV());
+        $view->setVariable('showQuickSearch',        $tableConfig->getShowQuickSearch());
+        $view->setVariable('showPagination',         $tableConfig->getShowPagination());
+        $view->setVariable('showItemPerPage',        $tableConfig->getShowItemPerPage());
+        $view->setVariable('showExportToCSV',        $tableConfig->getShowExportToCSV());
 
         return $this->getRenderer()->render($view);
     }
@@ -131,37 +128,42 @@ class Render extends AbstractCommon
      */
     public function renderTableAsHtml()
     {
-        $render = '';
         $tableConfig = $this->getTable()->getOptions();
 
+        $renderHead = '';
         if ($tableConfig->getShowColumnFilters()) {
-            $render .= $this->renderFilters();
+            $renderHead .= $this->renderFilters();
         }
+        $renderHead .= $this->renderHead();
+        $renderHead  = sprintf('<thead>%s</thead>', $renderHead);
 
-        $render .= $this->renderHead();
-        $render = sprintf('<thead>%s</thead>', $render);
-        $render .= $this->getTable()->getRow()->renderRows();
-        $table = sprintf('<table %s>%s</table>', $this->getTable()->getAttributes(), $render);
+        $renderBody  = '';
+        $renderBody .= $this->getTable()->getRow()->renderRows();
+
+        $renderFoot  = '';
+        $renderFoot .= $this->renderFoot();
+        $renderFoot  = sprintf('<tfoot>%s</tfoot>', $renderFoot);
+
+        $table = sprintf('<table %s>%s%s%s</table>', $this->getTable()->getAttributes(), $renderHead, $renderBody, $renderFoot);
 
         $view = new \Zend\View\Model\ViewModel();
         $view->setTemplate('container');
 
         $view->setVariable('table', $table);
 
-        $view->setVariable('paginator', $this->renderPaginator());
-        $view->setVariable('paramsWrap', $this->renderParamsWrap());
-        $view->setVariable('itemCountPerPage', $this->getTable()->getParamAdapter()->getItemCountPerPage());
-        $view->setVariable('quickSearch', $this->getTable()->getParamAdapter()->getQuickSearch());
-        $view->setVariable('name', $tableConfig->getName());
+        $view->setVariable('paginator',              $this->renderPaginator());
+        $view->setVariable('paramsWrap',             $this->renderParamsWrap());
+        $view->setVariable('itemCountPerPage',       $this->getTable()->getParamAdapter()->getItemCountPerPage());
+        $view->setVariable('quickSearch',            $this->getTable()->getParamAdapter()->getQuickSearch());
+        $view->setVariable('name',                   $tableConfig->getName());
         $view->setVariable('itemCountPerPageValues', $tableConfig->getValuesOfItemPerPage());
-        $view->setVariable('showQuickSearch', $tableConfig->getShowQuickSearch());
-        $view->setVariable('showPagination', $tableConfig->getShowPagination());
-        $view->setVariable('showItemPerPage', $tableConfig->getShowItemPerPage());
-        $view->setVariable('showExportToCSV', $tableConfig->getShowExportToCSV());
+        $view->setVariable('showQuickSearch',        $tableConfig->getShowQuickSearch());
+        $view->setVariable('showPagination',         $tableConfig->getShowPagination());
+        $view->setVariable('showItemPerPage',        $tableConfig->getShowItemPerPage());
+        $view->setVariable('showExportToCSV',        $tableConfig->getShowExportToCSV());
 
         return $this->getRenderer()->render($view);
     }
-
 
     /**
      * Rendering filters
@@ -174,10 +176,9 @@ class Render extends AbstractCommon
         $render = '';
 
         foreach ($headers as $name => $params) {
-
             if (isset($params['filters'])) {
                 $value = $this->getTable()->getParamAdapter()->getValueOfFilter($name);
-                $id = 'zff_'.$name;
+                $id = 'zff_' . $name;
 
                 if (is_string($params['filters'])) {
                     $element = new \Zend\Form\Element\Text($id);
@@ -196,8 +197,6 @@ class Render extends AbstractCommon
         return sprintf('<tr>%s</tr>', $render);
     }
 
-
-
     /**
      * Rendering head
      *
@@ -215,6 +214,23 @@ class Render extends AbstractCommon
     }
 
     /**
+     * Rendering foot
+     *
+     * @return string
+     */
+    public function renderFoot()
+    {
+        $footers = $this->getTable()->getFooters();
+        $render = '';
+
+        foreach ($footers as $name => $title) {
+            $render .= $this->getTable()->getFooter($name)->render();
+        }
+        $render = sprintf('<tr class="zf-foot">%s</tr>', $render);
+        return $render;
+    }
+
+    /**
      * Rendering params wrap to ajax communication
      *
      * @return string
@@ -224,12 +240,12 @@ class Render extends AbstractCommon
         $view = new \Zend\View\Model\ViewModel();
 
         $view->setTemplate('default-params');
-        $view->setVariable('column', $this->getTable()->getParamAdapter()->getColumn());
+        $view->setVariable('column',           $this->getTable()->getParamAdapter()->getColumn());
         $view->setVariable('itemCountPerPage', $this->getTable()->getParamAdapter()->getItemCountPerPage());
-        $view->setVariable('order', $this->getTable()->getParamAdapter()->getOrder());
-        $view->setVariable('page', $this->getTable()->getParamAdapter()->getPage());
-        $view->setVariable('quickSearch', $this->getTable()->getParamAdapter()->getQuickSearch());
-        $view->setVariable('rowAction', $this->getTable()->getOptions()->getRowAction());
+        $view->setVariable('order',            $this->getTable()->getParamAdapter()->getOrder());
+        $view->setVariable('page',             $this->getTable()->getParamAdapter()->getPage());
+        $view->setVariable('quickSearch',      $this->getTable()->getParamAdapter()->getQuickSearch());
+        $view->setVariable('rowAction',        $this->getTable()->getOptions()->getRowAction());
 
         return $this->getRenderer()->render($view);
     }

@@ -34,7 +34,7 @@ class CustomerTable extends AbstractTableGateway
 
         $select = $sql->select();
         $select->from('customer')
-            ->columns(array('*'))
+            ->columns(['*'])
         ;
 
         return $select;
@@ -49,8 +49,8 @@ class CustomerTable extends AbstractTableGateway
 
         $sql = new Sql($this->adapter);
         $select = $sql->select()
-                ->from(array('i' => 'institution'), array('address'))
-                ->join(array('u' => 'user'), 'i.user_id = u.id', array('name'));
+                ->from(['i' => 'institution'], ['address'])
+                ->join(['u' => 'user'], 'i.user_id = u.id', ['name']);
 
         return $select;
     }

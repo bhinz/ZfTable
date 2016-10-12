@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable;
 
 use ZfTable\Table\TableInterface;
@@ -19,9 +18,8 @@ use ZfTable\Form\TableFilter;
 
 abstract class AbstractTable extends AbstractElement implements TableInterface
 {
-
     /**
-     * Collection on headers objects
+     * Collection of headers objects
      * @var array
      */
     protected $headersObjects;
@@ -31,6 +29,18 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      * @var array
      */
     protected $headers;
+
+    /**
+     * Collection of footers objects
+     * @var array
+     */
+    protected $footersObjects;
+
+    /**
+     * List of footers
+     * @var array
+     */
+    protected $footers;
 
     /**
      * Database adapter
@@ -79,32 +89,32 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      * Default classes for table
      * @var array
      */
-    protected $class = array('table', 'table-bordered', 'table-condensed', 'table-hover', 'table-striped', 'dataTable');
+    protected $class = ['table', 'table-bordered', 'table-condensed', 'table-hover', 'table-striped', 'dataTable'];
 
     /**
      * Options base ond ModuleOptions and config array
      * @var Options\ModuleOptions
      */
     protected $config;
-    
+
     /**
      * @var TableForm
      */
     protected $form;
-    
+
     /**
      *
      * @var TableFilter
      */
     protected $filter;
-    
+
     /**
      * @var Decorator\DecoratorFactory
      */
     protected $decoratorFactory;
-    
+
     /**
-     * Check if table has benn initializable
+     * Check if table has been initializable
      * @return boolean
      */
     public function isTableInit()
@@ -171,7 +181,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
             }
             return $source->getData();
         }
-        return array();
+        return [];
     }
 
     /**
@@ -232,7 +242,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
         $this->adapter = $adapter;
         return $this;
     }
-    
+
     /**
      * Get decorator factory
      *
@@ -245,7 +255,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
         }
         return $this->decoratorFactory;
     }
-    
+
     /**
      * Set decorator factory
      *
@@ -309,6 +319,10 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
             $this->setHeaders($this->headers);
         }
 
+        if (count($this->footers)) {
+            $this->setFooters($this->footers);
+        }
+
         $this->init();
 
         $this->initFilters($this->getSource()->getSource());
@@ -322,7 +336,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      */
     protected function initQuickSearch()
     {
-        
+
     }
 
     /**
@@ -331,7 +345,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
      */
     protected function initFilters($query)
     {
-        
+
     }
 
     /**
@@ -345,7 +359,6 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
         foreach ($headers as $name => $options) {
             $this->addHeader($name, $options);
         }
-
         return $this;
     }
 
@@ -372,7 +385,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
         }
 
         if (!isset($this->headersObjects[$name])) {
-            throw new \RuntimeException('Header name doesnt exist');
+            throw new \RuntimeException('Header name doesn\'t exist');
         }
         return $this->headersObjects[$name];
     }
@@ -388,6 +401,60 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
         $header = new Header($name, $options);
         $header->setTable($this);
         $this->headersObjects[$name] = $header;
+    }
+
+    /**
+     *
+     * @param array $footers
+     * @return $this
+     */
+    public function setFooters(array $footers)
+    {
+        $this->footers = $footers;
+        foreach ($footers as $name => $options) {
+            $this->addFooter($name, $options);
+        }
+        return $this;
+    }
+
+    /**
+     * Return array of footers
+     *
+     * @return array
+     */
+    public function getFooters()
+    {
+        return $this->footers;
+    }
+
+    /**
+     *
+     * @param string $name type
+     * @return Footer | boolean
+     * @throws Exception\LogicException
+     */
+    public function getFooter($name)
+    {
+        if (!count($this->footersObjects)) {
+            throw new Exception\LogicException('Table hasn\'t got defined footers');
+        }
+        if (!isset($this->footersObjects[$name])) {
+            throw new \RuntimeException('Footer name doesn\'t exist');
+        }
+        return $this->footersObjects[$name];
+    }
+
+    /**
+     * Add new footer
+     *
+     * @param string $name
+     * @param array $options
+     */
+    public function addFooter($name, $options)
+    {
+        $footer = new Footer($name, $options);
+        $footer->setTable($this);
+        $this->footersObjects[$name] = $footer;
     }
 
     /**
@@ -454,7 +521,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
     {
         if (is_array($this->config)) {
             $this->config = new ModuleOptions($this->config);
-        } elseif (!$this->config instanceof  ModuleOptions) {
+        } elseif (!$this->config instanceof ModuleOptions) {
             throw new \Exception('Config class problem');
         }
         return $this->config;

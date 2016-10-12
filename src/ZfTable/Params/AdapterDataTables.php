@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable\Params;
 
 use ZfTable\Params\AbstractAdapter;
@@ -14,7 +13,6 @@ use ZfTable\Table\Exception;
 
 class AdapterDataTables extends AbstractAdapter implements AdapterInterface, \Zend\Stdlib\InitializableInterface
 {
-
     /**
      *
      * @var \ArrayObject | \Zend\Stdlib\ArrayObject

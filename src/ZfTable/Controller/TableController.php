@@ -19,7 +19,6 @@ use Doctrine\ORM\EntityManager;
 
 class TableController extends AbstractActionController
 {
-
     /**
      *
      * @var ResultSet
@@ -43,9 +42,6 @@ class TableController extends AbstractActionController
      * @var ModuleOptions
      */
     protected $moduleOptions;
-
-
-
 
      /**
      * @var \Doctrine\ORM\EntityManager
@@ -178,7 +174,6 @@ class TableController extends AbstractActionController
 
     }
 
-
     /**
      * ********* Callable *******************
      * *****************************************
@@ -196,8 +191,6 @@ class TableController extends AbstractActionController
         return $this->htmlResponse($table->render());
     }
 
-
-
     /**
      * ********* Column filtering *******************
      * ***********************************
@@ -214,7 +207,6 @@ class TableController extends AbstractActionController
         ;
         return $this->htmlResponse($table->render());
     }
-
 
     /**
      * ********* Editable tabble *******************
@@ -237,12 +229,11 @@ class TableController extends AbstractActionController
     {
         $param = $this->getRequest()->getPost();
         $this->getCustomerTable()->update(
-            array($param['column'] => $param['value']),
-            array('idcustomer' => $param['row'])
+            [$param['column'] => $param['value']],
+            ['idcustomer'     => $param['row']]
         );
-        return $this->jsonResponse(array('success' => 1));
+        return $this->jsonResponse(['success' => 1]);
     }
-
 
     /**
      * ********* Export To CSV *******************
@@ -308,8 +299,6 @@ class TableController extends AbstractActionController
         return $this->htmlResponse($table->render());
     }
 
-
-
     /**
      * ********* Base *******************
      * ***********************************
@@ -326,7 +315,6 @@ class TableController extends AbstractActionController
         ;
         return $this->htmlResponse($table->render());
     }
-
 
     /**
      * ********* Mapper *******************
@@ -345,7 +333,6 @@ class TableController extends AbstractActionController
                 ->setParamAdapter($this->getRequest()->getPost())
         ;
         return $this->htmlResponse($table->render());
-
     }
 
     /**
@@ -367,8 +354,7 @@ class TableController extends AbstractActionController
         return $this->htmlResponse($table->render());
     }
 
-
-     /**
+    /**
      * ********* Template *******************
      * ***********************************
      */
@@ -387,8 +373,7 @@ class TableController extends AbstractActionController
         return $this->htmlResponse($table->render());
     }
 
-
-     /**
+    /**
      * ********* Attr *******************
      * ***********************************
      */
@@ -406,7 +391,6 @@ class TableController extends AbstractActionController
         ;
         return $this->htmlResponse($table->render());
     }
-
 
     /**
      * ********* Condition *******************
@@ -427,7 +411,6 @@ class TableController extends AbstractActionController
         return $this->htmlResponse($table->render());
     }
 
-
     /**
      * ********* Mix *******************
      * ***********************************
@@ -447,7 +430,7 @@ class TableController extends AbstractActionController
         return $this->htmlResponse($table->render());
     }
 
-     /**
+    /**
      * ********* Advance *******************
      * ***********************************
      */
@@ -467,12 +450,6 @@ class TableController extends AbstractActionController
 
     }
 
-
-
-
-
-
-
     /************************************************ */
     /*************** EXAMPLE DATA TABLE ************* */
 
@@ -485,9 +462,9 @@ class TableController extends AbstractActionController
                 ->setParamAdapter(new AdapterDataTables($this->getRequest()->getPost()))
         ;
 
-        return new ViewModel(array(
+        return new ViewModel([
             'tableDataTable' => $table,
-        ));
+        ]);
     }
 
     public function ajaxDataTableAction()
@@ -504,7 +481,6 @@ class TableController extends AbstractActionController
         $response->setContent($table->render('dataTableJson'));
         return $response;
     }
-
 
     public function htmlResponse($html)
     {
@@ -526,7 +502,6 @@ class TableController extends AbstractActionController
         return $response;
     }
 
-
     /**
      *
      * @return \ZfTable\Example\Model\CustomerTable
@@ -542,8 +517,6 @@ class TableController extends AbstractActionController
     }
 
     /**********************My codes*********************/
-
-
 
     public function institutionRequestsAction()
     {
@@ -565,8 +538,6 @@ class TableController extends AbstractActionController
     {
         return $this->getCustomerTable()->fetchAllInstitutionRequests();
     }
-
-
 
     /**
      *

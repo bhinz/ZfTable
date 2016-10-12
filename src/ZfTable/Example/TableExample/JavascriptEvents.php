@@ -14,7 +14,7 @@ use ZfTable\AbstractTable;
 class JavascriptEvents extends AbstractTable
 {
 
-    protected $config = array(
+    protected $config = [
         'name' => 'Table',
         'showPagination' => true,
         'showQuickSearch' => false,
@@ -22,20 +22,20 @@ class JavascriptEvents extends AbstractTable
         'itemCountPerPage' => 10,
         'showColumnFilters' => false,
         'showExportToCSV ' => false,
-        'valuesOfItemPerPage' => array(5, 10, 20, 50 , 100 , 200),
-    );
+        'valuesOfItemPerPage' => [5, 10, 20, 50, 100, 200],
+    ];
 
     /**
      * @var array Definition of headers
      */
-    protected $headers = array(
-        'idcustomer' => array('title' => 'Id', 'width' => '50') ,
-        'name' => array('title' => 'Name' ),
-        'surname' => array('title' => 'Surname' ),
-        'street' => array('title' => 'Street'),
-        'city' => array('title' => 'City' ),
-        'active' => array('title' => 'Active' , 'width' => 100 ),
-    );
+    protected $headers = [
+        'idcustomer' => ['title' => 'Id', 'width' => '50'],
+        'name'       => ['title' => 'Name'],
+        'surname'    => ['title' => 'Surname'],
+        'street'     => ['title' => 'Street'],
+        'city'       => ['title' => 'City'],
+        'active'     => ['title' => 'Active', 'width' => 100],
+    ];
 
     public function init()
     {

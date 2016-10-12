@@ -13,28 +13,28 @@ use ZfTable\AbstractTable;
 class ColumnFiltering extends AbstractTable
 {
 
-    protected $config = array(
+    protected $config = [
         'name' => 'Filtering by column',
         'showPagination' => true,
         'showQuickSearch' => false,
         'showItemPerPage' => true,
         'itemCountPerPage' => 10,
         'showColumnFilters' => true,
-    );
-
+    ];
 
     /**
      * @var array Definition of headers
      */
-    protected $headers = array(
-        'idcustomer' => array('title' => 'Id', 'width' => '50') ,
-        'name' => array('title' => 'Name' , 'filters' => 'text'),
-        'surname' => array('title' => 'Surname' , 'filters' => 'text' ),
-        'street' => array('title' => 'Street' , 'filters' => 'text'),
-        'city' => array('title' => 'City'),
-        'active' => array('title' => 'Active' , 'width' => 100 ,
-            'filters' => array( null => 'All' , 1 => 'Active' , 0 => 'Inactive')),
-    );
+    protected $headers = [
+        'idcustomer' => ['title' => 'Id', 'width' => '50'],
+        'name'       => ['title' => 'Name', 'filters' => 'text'],
+        'surname'    => ['title' => 'Surname', 'filters' => 'text'],
+        'street'     => ['title' => 'Street', 'filters' => 'text'],
+        'city'       => ['title' => 'City'],
+        'active'     => ['title' => 'Active', 'width' => 100,
+            'filters' => [null => 'All', 1 => 'Active', 0 => 'Inactive']
+        ],
+    ];
 
     public function init()
     {

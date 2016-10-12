@@ -13,24 +13,24 @@ use ZfTable\AbstractTable;
 class Attr extends AbstractTable
 {
 
-    protected $config = array(
+    protected $config = [
         'name' => 'Configure attributes',
         'showPagination' => true,
         'showQuickSearch' => false,
         'showItemPerPage' => true,
-    );
+    ];
 
     /**
      * @var array Definition of headers
      */
-    protected $headers = array(
-        'idcustomer' => array('title' => 'Id', 'width' => '50') ,
-        'name' => array('title' => 'Name' , 'separatable' => true),
-        'surname' => array('title' => 'Surname' ),
-        'street' => array('title' => 'Street'),
-        'city' => array('title' => 'City' , 'separatable' => true),
-        'active' => array('title' => 'Active' , 'width' => 100 ),
-    );
+    protected $headers = [
+        'idcustomer' => ['title' => 'Id', 'width' => '50'],
+        'name'       => ['title' => 'Name' , 'separatable' => true],
+        'surname'    => ['title' => 'Surname'],
+        'street'     => ['title' => 'Street'],
+        'city'       => ['title' => 'City' , 'separatable' => true],
+        'active'     => ['title' => 'Active' , 'width' => 100],
+    ];
 
     public function init()
     {
@@ -48,7 +48,7 @@ class Attr extends AbstractTable
 
          //Attr and class for cell
         $this->getHeader('surname')->getCell()->addAttr('cellAttr', 'cellAttrValue');
-        $this->getHeader('surname')->getCell()->addDecorator('class', array('class' => 'sss'));
+        $this->getHeader('surname')->getCell()->addDecorator('class', ['class' => 'sss']);
 
     }
 }

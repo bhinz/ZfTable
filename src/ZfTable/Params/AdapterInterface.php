@@ -5,12 +5,10 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable\Params;
 
 interface AdapterInterface
 {
-
     /**
      * Get page
      *

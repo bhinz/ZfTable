@@ -14,31 +14,31 @@ use ZfTable\AbstractTable;
 class Mapper extends AbstractTable
 {
 
-    protected $config = array(
+    protected $config = [
         'name' => 'Mapper decorator',
         'showPagination' => true,
         'showQuickSearch' => false,
         'showItemPerPage' => true,
         'itemCountPerPage' => 10,
-    );
+    ];
 
     /**
      * @var array Definition of headers
      */
-    protected $headers = array(
-        'idcustomer' => array('title' => 'Id', 'width' => '50') ,
-        'name' => array('title' => 'Name' ),
-        'surname' => array('title' => 'Surname' ),
-        'street' => array('title' => 'Street'),
-        'city' => array('title' => 'City' ),
-        'active' => array('title' => 'Active' , 'width' => 100 ),
-    );
+    protected $headers = [
+        'idcustomer' => ['title' => 'Id', 'width' => '50'],
+        'name'       => ['title' => 'Name'],
+        'surname'    => ['title' => 'Surname'],
+        'street'     => ['title' => 'Street'],
+        'city'       => ['title' => 'City'],
+        'active'     => ['title' => 'Active', 'width' => 100],
+    ];
 
     public function init()
     {
-        $this->getHeader('active')->getCell()->addDecorator('mapper', array(
+        $this->getHeader('active')->getCell()->addDecorator('mapper', [
             '0' => 'NO',
             '1' => 'YES'
-        ));
+        ]);
     }
 }

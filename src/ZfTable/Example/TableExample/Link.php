@@ -14,31 +14,30 @@ use ZfTable\AbstractTable;
 class Link extends AbstractTable
 {
 
-    protected $config = array(
+    protected $config = [
         'name' => 'Link decorator',
         'showPagination' => true,
         'showQuickSearch' => false,
         'showItemPerPage' => true,
-    );
+    ];
 
     /**
      * @var array Definition of headers
      */
-    protected $headers = array(
-        'idcustomer' => array('title' => 'Id', 'width' => '50') ,
-        'name' => array('title' => 'Name' , 'separatable' => true),
-        'surname' => array('title' => 'Surname' ),
-        'street' => array('title' => 'Street'),
-        'city' => array('title' => 'City' , 'separatable' => true),
-        'active' => array('title' => 'Active' , 'width' => 100 ),
-    );
-
+    protected $headers = [
+        'idcustomer' => ['title' => 'Id', 'width' => '50'],
+        'name'       => ['title' => 'Name', 'separatable' => true],
+        'surname'    => ['title' => 'Surname'],
+        'street'     => ['title' => 'Street'],
+        'city'       => ['title' => 'City', 'separatable' => true],
+        'active'     => ['title' => 'Active', 'width' => 100],
+    ];
 
     public function init()
     {
-        $this->getHeader('name')->getCell()->addDecorator('link', array(
+        $this->getHeader('name')->getCell()->addDecorator('link', [
             'url' => '/table/link/id/%s',
-            'vars' => array('idcustomer')
-        ));
+            'vars' => ['idcustomer']
+        ]);
     }
 }

@@ -5,28 +5,37 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable\Decorator\Condition;
 
 use Zend\ServiceManager\AbstractPluginManager;
 
 class ConditionPluginManager extends AbstractPluginManager
 {
+    /**
+     * Default set of aliases
+     *
+     * @var array
+     */
+    protected $aliases = [
+        'equal'       => Plugin\Equal::class,
+        'notequal'    => Plugin\NotEqual::class,
+        'between'     => Plugin\Between::class,
+        'greaterthan' => Plugin\GreaterThan::class,
+        'lessthan'    => Plugin\LessThan::class,
+    ];
 
     /**
      * Default set of helpers
      *
      * @var array
      */
-    protected $invokableClasses = array(
-        'equal' => '\ZfTable\Decorator\Condition\Plugin\Equal',
-        'notequal' => '\ZfTable\Decorator\Condition\Plugin\NotEqual',
-        'between' => '\ZfTable\Decorator\Condition\Plugin\Between',
-        'greaterthan' => '\ZfTable\Decorator\Condition\Plugin\GreaterThan',
-        'lesserthan' => '\ZfTable\Decorator\Condition\Plugin\LesserThan',
-
-
-    );
+    protected $factories = [
+        Plugin\Equal::class       => InvokableFactory::class,
+        Plugin\NotEqual::class    => InvokableFactory::class,
+        Plugin\Between::class     => InvokableFactory::class,
+        Plugin\GreaterThan::class => InvokableFactory::class,
+        Plugin\LessThan::class    => InvokableFactory::class,
+    ];
 
     /**
      * Don't share plugin by default
@@ -34,7 +43,6 @@ class ConditionPluginManager extends AbstractPluginManager
      * @var bool
      */
     protected $shareByDefault = false;
-
 
     /**
      * See AbstractPluginManager

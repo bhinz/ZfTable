@@ -48,8 +48,6 @@ class DoctrineODMMongoDBQueryBuilder extends AbstractSource
         return $this->paginator;
     }
 
-
-
     protected function order()
     {
         $column = $this->getParamAdapter()->getColumn();
@@ -72,7 +70,6 @@ class DoctrineODMMongoDBQueryBuilder extends AbstractSource
         $order = strcasecmp('asc', $order) === 0 ? 1 : -1;
         $this->query->sort($tableAlias, $order);
     }
-
 
     public function getQuery()
     {

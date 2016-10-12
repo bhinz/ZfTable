@@ -3,7 +3,6 @@
  * @license http://opensource.org/licenses/MIT MIT
  * @copyright Copyright (c) 2015 Vinicius Fagundes
  */
-
 namespace ZfTable\Decorator\Cell;
 
 use Interop\Container\ContainerInterface;
@@ -29,7 +28,7 @@ class LinkFactory implements FactoryInterface
      */
     public function __construct($options = null)
     {
-        $this->options = $options ?: [];
+        $this->options = $options ? : [];
     }
 
     /**

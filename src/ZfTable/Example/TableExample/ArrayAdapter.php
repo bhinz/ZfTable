@@ -13,25 +13,25 @@ use ZfTable\AbstractTable;
 class ArrayAdapter extends AbstractTable
 {
 
-    protected $config = array(
+    protected $config = [
         'name' => 'Array Adapter',
         'showPagination' => true,
         'showQuickSearch' => false,
         'showItemPerPage' => true,
         'showColumnFilters' => true,
-    );
+    [;
 
     /**
      * @var array Definition of headers
      */
-    protected $headers = array(
-        'idcustomer' => array('title' => 'Id', 'width' => '50') ,
-        'name' => array('title' => 'Name' , 'separatable' => true , 'filters' => 'text'),
-        'surname' => array('title' => 'Surname' , 'filters' => 'text'),
-        'street' => array('title' => 'Street' , 'filters' => 'text'),
-        'city' => array('title' => 'City' , 'separatable' => true , 'filters' => 'text'),
-        'active' => array('title' => 'Active' , 'width' => 100 ),
-    );
+    protected $headers = [
+        'idcustomer' => ['title' => 'Id', 'width' => '50'],
+        'name'       => ['title' => 'Name' , 'separatable' => true , 'filters' => 'text'],
+        'surname'    => ['title' => 'Surname' , 'filters' => 'text'],
+        'street'     => ['title' => 'Street' , 'filters' => 'text'],
+        'city'       => ['title' => 'City' , 'separatable' => true , 'filters' => 'text'],
+        'active'     => ['title' => 'Active' , 'width' => 100],
+    ];
 
     public function init()
     {
@@ -40,7 +40,7 @@ class ArrayAdapter extends AbstractTable
 
     protected function initFilters($arrayData)
     {
-        $keys = array();
+        $keys = [];
 
         foreach ($arrayData as $key => $row) {
             if ($value = $this->getParamAdapter()->getValueOfFilter('name')) {

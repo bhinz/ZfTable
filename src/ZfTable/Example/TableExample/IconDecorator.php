@@ -16,17 +16,17 @@ class LinkDecorator extends AbstractTable
     /**
      * @var array Definition of headers
      */
-    protected $headers = array(
-        'artist' => array('title' => 'Artist'),
-        'title' => array('title' => 'Title')
-    );
+    protected $headers = [
+        'artist' => ['title' => 'Artist'],
+        'title'  => ['title' => 'Title']
+    ];
 
     public function init()
     {
-        $this->getHeader('artist')->getCell()->addDecorator('icon', array(
+        $this->getHeader('artist')->getCell()->addDecorator('icon', [
             'path' => '/img/zf2-logo.png',
             'place' => \ZfTable\Decorator\AbstractDecorator::RESET_CONTEXT
-        ));
+        ]);
 
     }
 }

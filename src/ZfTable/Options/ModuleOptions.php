@@ -6,7 +6,6 @@
  * @license   MIT License
  */
 
-
 namespace ZfTable\Options;
 
 use Zend\Stdlib\AbstractOptions;
@@ -36,7 +35,6 @@ class ModuleOptions extends AbstractOptions implements
      */
     protected $showQuickSearch = false;
 
-
     /**
      * Show or hide item per page view
      * @var boolean
@@ -62,21 +60,17 @@ class ModuleOptions extends AbstractOptions implements
      */
     protected $rowAction = false;
 
-
     /**
      * Show or hide exporter to CSV
      * @var boolean
      */
     protected $showExportToCSV = false;
 
-
-
     /**
      * Value to specify items per page (pagination)
      * @var array
      */
-    protected $valuesOfItemPerPage = array(5, 10, 20, 50 , 100);
-
+    protected $valuesOfItemPerPage = [5, 10, 20, 50 , 100];
 
     /**
     * Get maximal rows to returning. Data tables can use
@@ -87,42 +81,35 @@ class ModuleOptions extends AbstractOptions implements
     */
     protected $dataTablesMaxRows = 999;
 
-
     /**
      * Template Map
      * @var array
      */
-    protected $templateMap = array();
-
-
+    protected $templateMap = [];
 
     public function __construct($options = null)
     {
-        $this->templateMap = array(
-                'paginator-slide' => __DIR__ . '/../../../view/templates/slide-paginator.phtml',
-                'default-params' => __DIR__ . '/../../../view/templates/default-params.phtml',
-                'container' => __DIR__ . '/../../../view/templates/container-b3.phtml',
-                'data-table-init' => __DIR__ . '/../../../view/templates/data-table-init.phtml',
-                'custom-b2' => __DIR__ . '/../../../view/templates/custom-b2.phtml',
-                'custom-b3' => __DIR__ . '/../../../view/templates/custom-b3.phtml',
-        );
+        $this->templateMap = [
+            'paginator-slide' => __DIR__ . '/../../../view/templates/slide-paginator.phtml',
+            'default-params'  => __DIR__ . '/../../../view/templates/default-params.phtml',
+            'container'       => __DIR__ . '/../../../view/templates/container-b3.phtml',
+            'data-table-init' => __DIR__ . '/../../../view/templates/data-table-init.phtml',
+            'custom-b2'       => __DIR__ . '/../../../view/templates/custom-b2.phtml',
+            'custom-b3'       => __DIR__ . '/../../../view/templates/custom-b3.phtml',
+        ];
 
         parent::__construct($options);
     }
-
 
     public function getShowExportToCSV()
     {
         return $this->showExportToCSV;
     }
 
-
     public function setShowExportToCSV($showExportToCSV)
     {
         $this->showExportToCSV = $showExportToCSV;
     }
-
-
 
     /**
      * Set template map
@@ -132,7 +119,6 @@ class ModuleOptions extends AbstractOptions implements
     {
         $this->templateMap = $templateMap;
     }
-
 
     /**
      * Set template map
@@ -187,7 +173,6 @@ class ModuleOptions extends AbstractOptions implements
         $this->valuesOfItemPerPage = $valuesOfItemPerPage;
         return $this;
     }
-
 
     public function getName()
     {

@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable\Decorator;
 
 use ZfTable\AbstractCommon;
@@ -13,18 +12,15 @@ use ZfTable\Decorator\Condition\ConditionFactory;
 
 abstract class AbstractDecorator extends AbstractCommon implements DecoratorInterface
 {
-
     /**
      * Decorator is adding before cotext
      */
     const PRE_CONTEXT   = 'pre';
 
-
     /**
      * Decorator is adding after context
      */
     const POST_CONTEXT  = 'post';
-
 
     /**
      * Decorator reset context and return only new context
@@ -35,7 +31,7 @@ abstract class AbstractDecorator extends AbstractCommon implements DecoratorInte
      * Collections of conditions objects
      * @var array
      */
-    protected $conditions = array();
+    protected $conditions = [];
 
     /**
      * Add new condition to decorator

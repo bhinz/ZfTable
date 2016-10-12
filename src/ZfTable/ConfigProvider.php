@@ -16,7 +16,7 @@ class ConfigProvider
         return [
             'service_manager' => [
                 'factories' => [
-                    'ZfTable\Decorator\DecoratorFactory' => 'ZfTable\Decorator\Service\DecoratorFactoryFactory',
+                    'ZfTable\Decorator\DecoratorFactory'       => 'ZfTable\Decorator\Service\DecoratorFactoryFactory',
                     'ZfTable\Decorator\DecoratorPluginManager' => 'ZfTable\Decorator\Service\DecoratorPluginManagerFactory',
                 ],
                 'abstract_factories' => [
@@ -32,3 +32,4 @@ class ConfigProvider
         ];
     }
 }
+

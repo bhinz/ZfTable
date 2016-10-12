@@ -87,7 +87,7 @@ class TableAbstractServiceFactory implements AbstractFactoryInterface
             $table->setDecoratorFactory($container->get('ZfTable\Decorator\DecoratorFactory'));
 
             $config = $container->get('Config');
-            $zftableConfig = isset($config['zftable'])?$config['zftable']:array();
+            $zftableConfig = isset($config['zftable']) ? $config['zftable'] : [];
 
             $table->setOptions($zftableConfig);
 

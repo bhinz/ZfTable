@@ -10,39 +10,39 @@ class TableForm extends Form
         //Create the generic fields for the table
         parent::__construct('ZFTable');
         $this->setAttribute('method', 'post');
-        $this->add(array(
+        $this->add([
             'name' => 'zfTableItemPerPage',
-            'attributes' => array(
+            'attributes' => [
                 'type'  => 'text',
-            ),
-        ));
-        $this->add(array(
+            ],
+        ]);
+        $this->add([
             'name' => 'zfTableQuickSearch',
-            'attributes' => array(
+            'attributes' => [
                 'type'  => 'text',
-            ),
-        ));
-        $this->add(array(
+            ],
+        ]);
+        $this->add([
             'name' => 'zfTableOrder',
-            'attributes' => array(
+            'attributes' => [
                 'type'  => 'text',
-            ),
-        ));
-        $this->add(array(
+            ],
+        ]);
+        $this->add([
             'name' => 'zfTableColumn',
-            'attributes' => array(
+            'attributes' => [
                 'type'  => 'text',
-            ),
-        ));
+            ],
+        ]);
 
         //Creates a field for each of the columns in the table
         foreach ($columnFields as $fieldName) {
-            $this->add(array(
+            $this->add([
                 'name' => 'zff_' . $fieldName,
-                'attributes' => array(
+                'attributes' => [
                     'type'  => 'text',
-                ),
-            ));
+                ],
+            ]);
         }
     }
 }

@@ -5,14 +5,12 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable\Decorator\Condition\Plugin;
 
 use ZfTable\Decorator\Condition\AbstractCondition;
 
 class NotEqual extends AbstractCondition
 {
-
     /**
      * Name of column
      * @var string
@@ -32,7 +30,7 @@ class NotEqual extends AbstractCondition
     public function __construct($options)
     {
         $this->column = $options['column'];
-        $this->values = is_array($options['values']) ? $options['values'] : array($options['values']);
+        $this->values = is_array($options['values']) ? $options['values'] : [$options['values']];
     }
 
     /**

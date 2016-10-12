@@ -5,13 +5,10 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
-
 namespace ZfTable;
 
 abstract class AbstractCommon
 {
-
     /**
      * Table object
      * @var AbstractTable
@@ -26,7 +23,6 @@ abstract class AbstractCommon
     {
         return $this->table;
     }
-
 
     /**
      *

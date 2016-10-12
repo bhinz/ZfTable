@@ -25,7 +25,7 @@ class CallableDecorator extends AbstractCellDecorator
      * @param array $options
      * @throws \Exception
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         if (!isset($options['callable'])) {
             throw new \Exception('Please define closure');

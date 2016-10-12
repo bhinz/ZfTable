@@ -13,52 +13,50 @@ use ZfTable\AbstractTable;
 class Doctrine extends AbstractTable
 {
 
-    protected $config = array(
+    protected $config = [
         'name' => 'Doctrine 2',
         'showPagination' => true,
         'showQuickSearch' => false,
         'showItemPerPage' => true,
         'showColumnFilters' => true,
-    );
+    ];
 
     /**
      * @var array Definition of headers
      */
-    protected $headers = array(
-        'idcustomer' =>     array('tableAlias' => 'q', 'title' => 'Id', 'width' => '50') ,
-        'doctrine' =>       array(
+    protected $headers = [
+        'idcustomer' =>     ['tableAlias' => 'q', 'title' => 'Id', 'width' => '50'],
+        'doctrine' =>       [
             'tableAlias' => 'q',
-            'title' => 'Doctrine closure' ,
-            'filters' => 'text',
-            'sortable' => false
-        ),
-        'product' =>        array('tableAlias' => 'p', 'title' => 'Product', 'filters' => 'text'),
-        'name' =>           array('tableAlias' => 'q', 'title' => 'Name', 'filters' => 'text') ,
-        'surname' =>        array('tableAlias' => 'q', 'title' => 'Surname', 'filters' => 'text'),
-        'street' =>         array('tableAlias' => 'q', 'title' => 'Street', 'filters' => 'text'),
-        'city' =>           array('tableAlias' => 'q', 'title' => 'City', 'filters' => 'text'),
-        'active' =>         array('tableAlias' => 'q', 'title' => 'Active', 'width' => 100 ),
-    );
+            'title'      => 'Doctrine closure' ,
+            'filters'    => 'text',
+            'sortable'   => false
+        ],
+        'product' =>        ['tableAlias' => 'p', 'title' => 'Product', 'filters' => 'text'],
+        'name' =>           ['tableAlias' => 'q', 'title' => 'Name', 'filters' => 'text'],
+        'surname' =>        ['tableAlias' => 'q', 'title' => 'Surname', 'filters' => 'text'],
+        'street' =>         ['tableAlias' => 'q', 'title' => 'Street', 'filters' => 'text'],
+        'city' =>           ['tableAlias' => 'q', 'title' => 'City', 'filters' => 'text'],
+        'active' =>         ['tableAlias' => 'q', 'title' => 'Active', 'width' => 100],
+    ];
 
     public function init()
     {
-        $this->getHeader('doctrine')->getCell()->addDecorator('callable', array(
+        $this->getHeader('doctrine')->getCell()->addDecorator('callable', [
             'callable' => function ($context, $record) {
                 return $record->name . ' ' . $record->surname;
             }
-        ));
+        ]);
 
-
-        $this->getHeader('product')->getCell()->addDecorator('callable', array(
+        $this->getHeader('product')->getCell()->addDecorator('callable', [
             'callable' => function ($context, $record) {
-
                 if (is_object($record->product)) {
                     return $record->product->product;
                 } else {
                     return '';
                 }
             }
-        ));
+        ]);
     }
 
     //The filters could also be done with a parametrised query

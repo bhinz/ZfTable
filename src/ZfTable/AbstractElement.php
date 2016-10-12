@@ -5,45 +5,41 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
-
 namespace ZfTable;
 
 use ZfTable\AbstractCommon;
 
 abstract class AbstractElement extends AbstractCommon
 {
-
     /**
      * Array of attributes
      * @var array
      */
-    protected $attributes = array();
+    protected $attributes = [];
 
     /**
      * Array of class
      * @var array
      */
-    protected $class = array();
+    protected $class = [];
 
     /**
      * Collections of decorators
      * @var array
      */
-    protected $decorators = array();
-
+    protected $decorators = [];
 
     /**
      * Array of vars class
      * @var array
      */
-    protected $varClass = array();
+    protected $varClass = [];
 
     /**
      * Array of vars attr
      * @var array
      */
-    protected $varAttr= array();
+    protected $varAttr = [];
 
     /**
      * Add new class to element
@@ -103,7 +99,7 @@ abstract class AbstractElement extends AbstractCommon
     }
 
     /**
-     * Add new attribute to table, header, column or rowset
+     * Add new attribute to table, header, footer, column or rowset
      *
      * @param string $name
      * @param string $value
@@ -143,7 +139,7 @@ abstract class AbstractElement extends AbstractCommon
      */
     public function getAttributes()
     {
-        $ret = array();
+        $ret = [];
 
         if (count($this->attributes)) {
             foreach ($this->attributes as $name => $value) {
@@ -168,8 +164,8 @@ abstract class AbstractElement extends AbstractCommon
      */
     public function clearVar()
     {
-        $this->varClass = array();
-        $this->varAttr = array();
+        $this->varClass = [];
+        $this->varAttr  = [];
     }
 
     /**

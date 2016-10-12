@@ -13,24 +13,23 @@ use ZfTable\AbstractTable;
 class InstitutionRequests extends AbstractTable
 {
 
-    protected $config = array(
+    protected $config = [
         'name' => 'Institution Requests',
         'showPagination' => true,
         'showQuickSearch' => false,
         'showItemPerPage' => true,
         'itemCountPerPage' => 10,
         'showColumnFilters' => true,
-    );
+    ];
 
 
     /**
      * @var array Definition of headers
      */
-    protected $headers = array(
-        'address' => array('title' => 'Address' , 'filters' => 'text'),// from institution table
-        'name' => array('title' => 'Name') ,// from user table
-
-    );
+    protected $headers = [
+        'address' => ['title' => 'Address', 'filters' => 'text'],// from institution table
+        'name' => ['title' => 'Name'] ,// from user table
+    ];
 
     public function init()
     {

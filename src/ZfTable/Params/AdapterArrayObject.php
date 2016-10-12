@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable\Params;
 
 use ZfTable\Params\AbstractAdapter;
@@ -14,7 +13,6 @@ use ZfTable\Table\Exception;
 
 class AdapterArrayObject extends AbstractAdapter implements AdapterInterface, \Zend\Stdlib\InitializableInterface
 {
-
     /**
      *
      * @var \ArrayObject | \Zend\Stdlib\ArrayObject
@@ -51,7 +49,6 @@ class AdapterArrayObject extends AbstractAdapter implements AdapterInterface, \Z
      */
     protected $quickSearch;
 
-
      /**
      * Array of filters
      * @var array
@@ -81,9 +78,9 @@ class AdapterArrayObject extends AbstractAdapter implements AdapterInterface, \Z
     {
         $array = (method_exists($this->object, 'toArray')) ? $this->object->toArray() : $this->object->getArrayCopy();
 
-        $this->page = (isset($array['zfTablePage'])) ? $array['zfTablePage'] : self::DEFAULT_PAGE;
+        $this->page   = (isset($array['zfTablePage']))   ? $array['zfTablePage']   : self::DEFAULT_PAGE;
         $this->column = (isset($array['zfTableColumn'])) ? $array['zfTableColumn'] : null;
-        $this->order = (isset($array['zfTableOrder'])) ? $array['zfTableOrder'] : self::DEFAULT_ORDER;
+        $this->order  = (isset($array['zfTableOrder']))  ? $array['zfTableOrder']  : self::DEFAULT_ORDER;
         $this->itemCountPerPage = (isset($array['zfTableItemPerPage']))
             ? $array['zfTableItemPerPage'] : $this->getOptions()->getItemCountPerPage();
         $this->quickSearch = (isset($array['zfTableQuickSearch'])) ? $array['zfTableQuickSearch'] : '';

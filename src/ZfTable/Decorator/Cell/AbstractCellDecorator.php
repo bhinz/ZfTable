@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable\Decorator\Cell;
 
 use ZfTable\Decorator\AbstractDecorator;
@@ -13,7 +12,6 @@ use ZfTable\Decorator\DataAccessInterface;
 
 abstract class AbstractCellDecorator extends AbstractDecorator implements DataAccessInterface
 {
-
     /**
      * Get cell object
      * @var \ZfTable\Cell
