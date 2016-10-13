@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
 namespace ZfTable;
 
 use Zend\View\Resolver;
@@ -178,7 +177,7 @@ class Render extends AbstractCommon
         foreach ($headers as $name => $params) {
             if (isset($params['filters'])) {
                 $value = $this->getTable()->getParamAdapter()->getValueOfFilter($name);
-                $id = 'zff_' . $name;
+                $id = 'zft_' . $name;
 
                 if (is_string($params['filters'])) {
                     $element = new \Zend\Form\Element\Text($id);
