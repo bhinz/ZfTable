@@ -88,7 +88,7 @@ class AdapterArrayObject extends AbstractAdapter implements AdapterInterface, \Z
         //Init filters value
         if ($this->getTable()->getOptions('showColumnFilters')) {
             foreach ($array as $key => $value) {
-                if (substr($key, 0, 4) == 'zff_') {
+                if (substr($key, 0, 4) == 'zft_') {
                     $this->filters[$key] = $value;
                 }
             }
@@ -100,7 +100,7 @@ class AdapterArrayObject extends AbstractAdapter implements AdapterInterface, \Z
         return $this->object[$key];
     }
 
-    public function getValueOfFilter($key, $prefix = 'zff_')
+    public function getValueOfFilter($key, $prefix = 'zft_')
     {
         return $this->filters[$prefix . $key];
     }
