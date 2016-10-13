@@ -38,7 +38,7 @@ class TableForm extends Form
         //Creates a field for each of the columns in the table
         foreach ($columnFields as $fieldName) {
             $this->add([
-                'name' => 'zff_' . $fieldName,
+                'name' => 'zft_' . $fieldName,
                 'attributes' => [
                     'type'  => 'text',
                 ],
