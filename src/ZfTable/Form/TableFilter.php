@@ -89,7 +89,7 @@ class TableFilter extends InputFilter
         //Creates a filter for each of the input fields
         foreach ($columnFields as $fieldName) {
             $this->add([
-                'name'     => 'zff_' . $fieldName,
+                'name'     => 'zft_' . $fieldName,
                 'allowEmpty' => true,
                 'required' => false,
                 'filters'  => [
