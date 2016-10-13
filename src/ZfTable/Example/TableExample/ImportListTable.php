@@ -5,15 +5,12 @@
  * @copyright Copyright (c) 2013 Piotr Duda dudapiotrek@gmail.com
  * @license   MIT License
  */
-
-
 namespace Application\Table;
 
 use ZfTable\AbstractTable;
 
 class ImportListTable extends AbstractTable
 {
-
     protected $config = [
         'name'             => 'Lista importów',
         'showPagination'   => true,
@@ -60,11 +57,11 @@ class ImportListTable extends AbstractTable
 
     protected function initFilters($query)
     {
-        if ($value = $this->getParamAdapter()->getValueOfFilter('zff_category_title')) {
+        if ($value = $this->getParamAdapter()->getValueOfFilter('zft_category_title')) {
             $query->where("c.title like '%" . $value . "%' ");
         }
 
-        if ($value = $this->getParamAdapter()->getValueOfFilter('zff_created_at')) {
+        if ($value = $this->getParamAdapter()->getValueOfFilter('zft_created_at')) {
             $query->where("i.created_at like '%" . $value . "%' ");
         }
     }
