@@ -5,7 +5,9 @@ ZffTable 3.2 [See on live v3.1](http://dudapiotrek.laohost.net)
 =======
 Original project created by Piotr Duda
 
-Version 3.2 Created by Vinícius Fagundes
+Version 3.2 created by Vinícius Fagundes
+
+Version 3.2.x created by Lowtower
 
 
 Download
