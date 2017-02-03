@@ -7,6 +7,8 @@
  */
 namespace ZfTable\Decorator;
 
+use RuntimeException;
+use Zend\ServiceManager\Exception\InvalidServiceException;
 use Zend\ServiceManager\AbstractPluginManager;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
@@ -67,6 +69,15 @@ class DecoratorPluginManager extends AbstractPluginManager
      * @param mixed $plugin
      */
     public function validatePlugin($plugin)
+    {
+        try {
+            $this->validate($plugin);
+        } catch (InvalidServiceException $ex) {
+            throw new RuntimeException($ex->getMessage(), $ex->getCode(), $ex);
+        }
+    }
+    
+    public function validate($plugin)
     {
         if ($plugin instanceof AbstractDecorator) {
             return;

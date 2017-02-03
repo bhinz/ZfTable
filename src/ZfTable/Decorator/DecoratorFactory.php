@@ -7,6 +7,8 @@
  * @license   MIT License
  */
 namespace ZfTable\Decorator;
+use Zend\ServiceManager\ServiceManager;
+
 
 class DecoratorFactory
 {
@@ -78,7 +80,7 @@ class DecoratorFactory
     public function getPluginManager()
     {
         if ($this->decoratorManager === null) {
-            $this->decoratorManager = new DecoratorPluginManager();
+            $this->decoratorManager = new DecoratorPluginManager(new ServiceManager());
         }
         return $this->decoratorManager;
     }

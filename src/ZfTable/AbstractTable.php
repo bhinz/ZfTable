@@ -15,6 +15,7 @@ use ZfTable\Options\ModuleOptions;
 
 use ZfTable\Form\TableForm;
 use ZfTable\Form\TableFilter;
+use Zend\ServiceManager\ServiceManager;
 
 abstract class AbstractTable extends AbstractElement implements TableInterface
 {
@@ -251,7 +252,7 @@ abstract class AbstractTable extends AbstractElement implements TableInterface
     public function getDecoratorFactory()
     {
         if (!$this->decoratorFactory) {
-            $this->decoratorFactory = new Decorator\DecoratorFactory();
+            $this->decoratorFactory = new Decorator\DecoratorFactory(new ServiceManager());
         }
         return $this->decoratorFactory;
     }

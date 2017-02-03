@@ -18,7 +18,17 @@ class Link extends AbstractCellDecorator
      * @var BasePath
      */
     protected $basePathHelper;
+    
+    protected $url;
+    
+    protected $vars = array();
 
+    public function __construct($vars)
+    {
+        
+        $this->url = $vars['url'];
+        $this->vars = $vars['vars'];
+    }
     /**
      * @return BasePath
      */

@@ -42,8 +42,8 @@ class DecoratorPluginManagerFactory implements FactoryInterface
         $decoratorsConfig = isset($config['zftable_decorators']) ? $config['zftable_decorators'] : [];
         $configSevice     = new ConfigServiceMgr($decoratorsConfig);
 
-        $plugins = new DecoratorPluginManager($configSevice);
-        $plugins->setServiceLocator($container);
+        $plugins = new DecoratorPluginManager($container,$configSevice);
+        #$plugins->setServiceLocator($container);
 
         if (isset($config['di']) && $container->has('Di')) {
             $plugins->addAbstractFactory($container->get('DiAbstractServiceFactory'));
