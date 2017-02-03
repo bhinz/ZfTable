@@ -1,6 +1,6 @@
 {
-    "name": "fagundes/zff-table",
-    "description": "Flexible tool to generate table",
+    "name": "bhinz/zff-table",
+    "description": "Flexible tool to generate table with ZF3",
     "license": "BSD-3-Clause",
     "keywords": [
         "zftable",
@@ -18,6 +18,10 @@
         {
             "name": "Lowtower",
             "email": "lowtower@gmx.de"
+        },
+        {
+            "name": "Björn Hinz",
+            "email": "bjoern@hinz.tv"
         }
     ],
     "require": {
