@@ -84,10 +84,16 @@ class Render extends AbstractCommon
      */
     public function renderDataTableAjaxInit()
     {
+        $tableConfig = $this->getTable()->getOptions();
+                
         $renderedHeads = $this->renderHead();
 
         $view = new \Zend\View\Model\ViewModel();
         $view->setTemplate('data-table-init');
+        if ($tableConfig->getShowColumnFilters()) {
+            $renderedFilters = $this->renderFilters();
+            $view->setVariable('filters', $renderedFilters);
+        }
         $view->setVariable('headers', $renderedHeads);
         $view->setVariable('attributes', $this->getTable()->getAttributes());
 

@@ -73,4 +73,12 @@ class DoctrineQueryBuilder extends AbstractSource
     {
         return $this->query;
     }
+    
+    /*
+     * Init quick search
+     */
+    protected function quickSearch()
+    {
+        
+    }
 }

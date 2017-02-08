@@ -48,6 +48,12 @@ class AdapterDataTables extends AbstractAdapter implements AdapterInterface, \Ze
      * @var string
      */
     protected $quickSearch;
+    
+    /**
+     * Array of filters
+     * @var array
+     */
+    protected $filters;
 
     const DEFAULT_PAGE = 1;
     const DEFAULT_ORDER = 'asc';
@@ -62,6 +68,7 @@ class AdapterDataTables extends AbstractAdapter implements AdapterInterface, \Ze
         } else {
             throw new Exception\InvalidArgumentException('parameter must be instance of ArrayObject');
         }
+        
     }
 
     /**
@@ -82,8 +89,25 @@ class AdapterDataTables extends AbstractAdapter implements AdapterInterface, \Ze
         $this->order = (isset($array['sSortDir_0'])) ? $array['sSortDir_0'] : self::DEFAULT_ORDER;
         $this->itemCountPerPage = (isset($array['iDisplayLength'])) ? $array['iDisplayLength'] : 999;
         $this->quickSearch = (isset($array['sSearch'])) ? $array['sSearch'] : '';
+        
+        //Init filters value
+        if ($this->getTable()->getOptions('showColumnFilters')) {
+            foreach ($array as $key => $value) {
+                    $this->filters[$key] = $value;
+            }
+        }
     }
 
+    public function getPureValueOfFilter($key)
+    {
+        return $this->object[$key];
+    }
+
+    public function getValueOfFilter($key, $prefix = '')
+    {
+        return $this->filters[$prefix . $key];
+    }
+    
     /**
      * Get page
      *
